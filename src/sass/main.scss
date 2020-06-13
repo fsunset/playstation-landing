@@ -1,1 +1,19 @@
 @import "~bootstrap/scss/bootstrap";
+
+body {
+    background-color: #000;
+    background-image: url(../img/bg.jpg);
+    background-size: cover;
+    background-position: top center;
+		background-repeat: no-repeat;
+		
+		.main-container {
+			height: 100vh;
+			overflow: hidden;
+
+			.main-logo {
+        margin-left: -4em;
+				width: 100%;
+			}
+		}
+}
