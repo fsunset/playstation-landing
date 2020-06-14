@@ -87,9 +87,11 @@ body {
 					}
 				}
 
-				.trailer-video-container > p {
-					position: absolute;
-    				top: 15%;
+				.trailer-video-container {
+					> p {
+						position: absolute;
+						top: 15%;
+					}
 				}
 			}
 		}
