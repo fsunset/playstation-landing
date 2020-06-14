@@ -50,11 +50,21 @@ body {
 			.left-container {
 				img {
 					width: 100%;
+					@media (min-width: 1299px) {
+						width: 90%;
+					}
 				}
 	
 				p {
 					font-size: 1.1em;
-					
+					@media (min-width: 1199px) {
+						font-size: 1.3em;
+					}
+					@media (min-width: 1299px) {
+						font-size: 1.7em;
+					}
+					line-height: 1;
+    			margin-top: .5em;
 					padding-left: 15px;
 				}
 			}

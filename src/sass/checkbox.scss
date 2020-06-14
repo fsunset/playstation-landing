@@ -3,8 +3,14 @@
 */
 
 .checkbox-label {
-	font-size: 1.2em;
+	font-size: .85em;
 	margin: 0 3em 0 0;
+	@media (min-width: 992px) {
+		font-size: 1.2em;
+	}
+	@media (min-width: 1024px) {
+		font-size: 1em;
+	}
 }
 
 .checkbox-container {
@@ -34,10 +40,14 @@
 	/* Create a custom checkbox */
 	.checkmark {
 		position: absolute;
-		top: -5px;
+		top: -7px;
 		right: 0;
-		height: 35px;
-		width: 35px;
+		height: 28px;
+		width: 28px;
+		@media (min-width: 992px) {
+			height: 35px;
+			width: 35px;
+		}
 		background-color: $yellow;
 		border-radius: 0.15em;
 		transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
@@ -51,10 +61,14 @@
 			content: "";
 			position: absolute;
 			display: none;
-			left: 15px;
-			top: 9px;
+			left: 10px;
+			top: 5px;
 			width: 8px;
 			height: 15px;
+			@media (min-width: 992px) {
+				left: 15px;
+				top: 9px;
+			}
 			border: solid black;
 			border-width: 0 4px 4px 0;
 			transform: rotate(45deg);

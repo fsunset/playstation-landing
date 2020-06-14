@@ -20,14 +20,14 @@ function App() {
 
         <Container>
           <Row>
-          <Col xs={6} sm={4} md={{span: 2, offset: 1}} className="left-container">
+          <Col xs={6} sm={4} md={{span: 3, offset: 1}} lg={{span: 3, offset: 1}} xl={{span: 2, offset: 1}}  className="left-container">
             <img src={tlousLogo} alt="The Last Of Us II" />
             <Row>
               <p className="bold-text">LA ESPERA FINAL</p>
             </Row>
           </Col>
 
-          <Col xs={12} md={{span: 3, offset:4}} className="right-container mt-5 mt-md-0">
+          <Col xs={12} md={{span: 4, offset:3}} lg={{span: 3, offset:4}} xl={{span: 3, offset:5}} className="right-container mt-5 mt-md-0">
             <Row>
               <p className="bold-text">BIENVENIDO.</p>
               <p className="bold-text border-bottom-yellow">PARA ENTRAR A ESTE EVENTO ES NECESARIO SER MAYOR DE EDAD.</p>
@@ -50,10 +50,10 @@ function App() {
             </Row>
 
             <Row className="mt-5">
-              <Col xs={12} sm={6} className="pb-3 pl-sm-0 my-auto">
+              <Col xs={6} className="pl-sm-0 my-auto">
                 <img src={naughtyDogLogo} alt="Naughty Dog Logo" className="w-100" />
               </Col>
-              <Col xs={12} sm={6} className="pr-sm-0 my-auto">
+              <Col xs={6} className="pr-sm-0 my-auto">
                 <img src={parentalControlLogo} alt="Rated Mature 17+" className="w-100" />
               </Col>
             </Row>
@@ -66,7 +66,7 @@ function App() {
         <p className="small-text">
           “PlayStation”, “PlayStation Family Mark, “PS4 logo”, “PS4”and “DUALSHOCK” are registered trademarks or trademarks of Sony Interactive Entertainment Inc. “SONY” is a registered trademark of Sony Corporation.
         </p>
-      </footer>      
+      </footer>
     </div>
   );
 }
