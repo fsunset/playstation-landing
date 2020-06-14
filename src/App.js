@@ -1,7 +1,8 @@
 import React, {useState} from 'react';
 import './sass/main.scss';
-import {Alert, Button, Collapse, Container, Row, Col} from 'react-bootstrap';
+import {Button, Fade, Container, Row, Col} from 'react-bootstrap';
 
+import bg1 from './img/bg1.jpg';
 import ps4Logo from './img/ps4Logo.png';
 import tlousLogo from './img/tlousLogo.png';
 import naughtyDogLogo from './img/naughtyDogLogo.png';
@@ -28,6 +29,7 @@ const App = () => {
   }
   
   const enterHandler = () => {
+    document.body.style.backgroundImage = `url(${bg1})`;
     setBtnIsDisabled(true);
     setStep(1);
     setMsgText("¡NO TE PIERDAS EL EVENTO DE ESTRENO!");
@@ -95,9 +97,9 @@ const App = () => {
 
               {step === 1 && (
                 <>
-                  <Collapse in={open}>
+                  <Fade in={open}>
                     <p className="custom-alert">Hay un error, por favor verifica los campos.</p>
-                  </Collapse>
+                  </Fade>
                   <input
                     onBlur={() => inputValidationHandler()}
                     onChange={e => {

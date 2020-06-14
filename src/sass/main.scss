@@ -12,6 +12,10 @@ body {
 	background-size: cover;
 	background-position: top center;
 	background-repeat: no-repeat;
+	transition-delay: 0s;
+	transition-duration: 0.3s;
+	transition-property: all;
+	transition-timing-function: linear;
 
 	color: $white !important;
 	font-family: 'UniversLTStd', Arial, Helvetica, sans-serif;
