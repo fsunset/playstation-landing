@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import './sass/main.scss';
 import {Button, Container, Row, Col} from 'react-bootstrap';
 
@@ -8,7 +8,28 @@ import naughtyDogLogo from './img/naughtyDogLogo.png';
 import parentalControlLogo from './img/parentalControlLogo.png';
 
 
-function App() {
+const App = () => {
+  const termsLink = "https://www.playstation.com/es-ar/legal/terms-of-use/";
+
+  const [step, setStep] = useState(0);
+  const [checkboxActive, setCheckboxActive] = useState(false);
+  const [btnIsDisabled, setBtnIsDisabled] = useState(true);
+  const [msgText, setMsgText] = useState("PARA ENTRAR A ESTE EVENTO ES NECESARIO SER MAYOR DE EDAD.")
+
+  const onClickCheckBoxHandler = () => {
+    setCheckboxActive(!checkboxActive);
+    setBtnIsDisabled(!btnIsDisabled);
+  }
+  
+  const enterHandler = () => {
+    setStep(1);
+    setMsgText("¡NO TE PIERDAS EL EVENTO DE ESTRENO!");
+  }
+
+  const registerHandler = () => {
+    console.log("REGIStER!!");
+  }
+
   return (
     <div className="App main-container">
       <Container fluid className="pl-0 pr-0 main-child">
@@ -29,25 +50,48 @@ function App() {
 
           <Col xs={12} md={{span: 4, offset:3}} lg={{span: 3, offset:4}} xl={{span: 3, offset:5}} className="right-container mt-5 mt-md-0">
             <Row>
-              <p className="bold-text">BIENVENIDO.</p>
-              <p className="bold-text border-bottom-yellow">PARA ENTRAR A ESTE EVENTO ES NECESARIO SER MAYOR DE EDAD.</p>
+              {step === 0 && (
+                <p className="bold-text">BIENVENIDO.</p>
+              )}
+              
+              <p className="bold-text border-bottom-yellow">{msgText}</p>
+
+              {step === 1 && (
+                <p>Regístrate para activar una alerta en tu calendario.</p>
+              )}
             </Row>
             
             <Row className="my-5">
-              <p className="bold-text yellow-text checkbox-label">SOY MAYOR DE EDAD</p>
-              <label className="checkbox-container">
-                <input type="checkbox" />
-                <span className="checkmark"></span>
-              </label>
+              {step === 0 && (
+                <>
+                  <p className="bold-text yellow-text checkbox-label">SOY MAYOR DE EDAD</p>
+                  <label className="checkbox-container">
+                    <input type="checkbox" onClick={() => onClickCheckBoxHandler()} />
+                    <span className="checkmark"></span>
+                  </label>
+                </>
+              )}
+
+              {step === 1 && (
+                <>
+                  <input type="text" placeholder="NOMBRE" className="input-field mb-3" />
+                  <input type="email" placeholder="EMAIL" className="input-field mb-3" />
+                  <Button disabled={btnIsDisabled} onClick={() => registerHandler()}>REGISTRARME</Button>
+                </>
+              )}
             </Row>
 
-            <Row>
-              <p>Al enviar esta forma manifiesta su conformidad con la política de confidencialidad.</p>
-            </Row>
+            {step === 0 && (
+              <>
+                <Row>
+                  <p>Al enviar esta forma manifiesta su conformidad con la <a href={termsLink} target="_blank" rel="noopener noreferrer">política de confidencialidad.</a></p>
+                </Row>
 
-            <Row>
-              <Button>ENTRAR</Button>
-            </Row>
+                <Row>
+                  <Button disabled={btnIsDisabled} onClick={() => enterHandler()}>ENTRAR</Button>
+                </Row>
+              </>
+            )}
 
             <Row className="mt-5">
               <Col xs={6} className="pl-sm-0 my-auto">

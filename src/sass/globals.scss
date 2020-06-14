@@ -6,6 +6,8 @@
 
 $yellow:      #f6c444;
 $dark-yellow: #e2b030;
+$grey:        #333333;
+$soft-grey:   #747474;
 $white:       #ffffff;
 $black:       #000000;
 
@@ -48,7 +50,7 @@ $black:       #000000;
 }
 
 .border-bottom-yellow {
-	border-bottom: 3px solid $yellow !important;
+	border-bottom: 4px solid $yellow !important;
 }
 
 .btn {
@@ -66,5 +68,15 @@ $black:       #000000;
 		color: $black !important;
 		background-color: $dark-yellow !important;
 		border-color: $dark-yellow !important;
+	}
+}
+
+a {
+	color: $yellow !important;
+
+	&:hover,
+	&:not(:disabled):not(.disabled):active,
+	&:not(:disabled):not(.disabled).active {
+		color: $yellow !important;
 	}
 }
