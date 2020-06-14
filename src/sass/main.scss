@@ -87,8 +87,9 @@ body {
 					}
 				}
 
-				.trailer-video {
-					margin-top: -40px;
+				.trailer-video-container > p {
+					position: absolute;
+    				top: 15%;
 				}
 			}
 		}

@@ -131,18 +131,15 @@ const App = () => {
               )}
 
               {step === 2 && (
-                <>
-                  <p>Cargando...</p>
+                <div class="trailer-video-container embed-responsive embed-responsive-16by9">
+                  <p className="w-100 my-5 text-center">Cargando...</p>
                   <iframe
-                    className="trailer-video"
-                    title="TLOUS trailer"
-                    width="auto"
-                    src="https://www.youtube.com/embed/vhII1qlcZ4E"
-                    frameborder="0"
-                    allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                    title="trailer-video"
+                    class="embed-responsive-item"
+                    src="https://www.youtube-nocookie.com/embed/vhII1qlcZ4E?start=1"
                     allowfullscreen
                   ></iframe>
-                </>
+                </div>
               )}
             </Row>
 
