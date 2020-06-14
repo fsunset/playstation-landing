@@ -17,6 +17,7 @@ const App = () => {
   const [checkboxActive, setCheckboxActive] = useState(false);
   const [btnIsDisabled, setBtnIsDisabled] = useState(true);
   const [msgText, setMsgText] = useState("PARA ENTRAR A ESTE EVENTO ES NECESARIO SER MAYOR DE EDAD.");
+  const [subTitleText, setSubTitleText] = useState("Regístrate para activar una alerta en tu calendario.");
 
   // For storing user's name & email
   const [userName, setUserName] = useState("");
@@ -46,6 +47,9 @@ const App = () => {
   const registerHandler = () => {
     if (userName.length > 0 && /^[a-zA-Z0-9]+@(?:[a-zA-Z0-9]+\.)+[A-Za-z]+$/.test(userEmail)) {
       setOpen(false);
+      setStep(2);
+      setMsgText("¡REGISTRO COMPLETADO!");
+      setSubTitleText("Revisa tu correo y no te pierdas este gran evento el próximo 18 de junio.");
       console.log("REGIStER!!");
     } else {
       setOpen(true);
@@ -72,6 +76,7 @@ const App = () => {
           </Col>
 
           <Col xs={12} md={{span: 4, offset:3}} lg={{span: 3, offset:4}} xl={{span: 3, offset:5}} className="right-container mt-5 mt-md-0">
+            {/* Header-Section Container */}
             <Row>
               {step === 0 && (
                 <p className="bold-text">BIENVENIDO.</p>
@@ -79,12 +84,13 @@ const App = () => {
               
               <p className="bold-text border-bottom-yellow">{msgText}</p>
 
-              {step === 1 && (
-                <p>Regístrate para activar una alerta en tu calendario.</p>
+              {step !== 0 && (
+                <p>{subTitleText}</p>
               )}
             </Row>
             
-            <Row className="my-5">
+            {/* Body-Section Container */}
+            <Row className={step === 0 && ("my-5")}>
               {step === 0 && (
                 <>
                   <p className="bold-text yellow-text checkbox-label">SOY MAYOR DE EDAD</p>
@@ -123,6 +129,21 @@ const App = () => {
                   <Button disabled={btnIsDisabled} onClick={() => registerHandler()}>REGISTRARME</Button>
                 </>
               )}
+
+              {step === 2 && (
+                <>
+                  <p>Cargando...</p>
+                  <iframe
+                    className="trailer-video"
+                    title="TLOUS trailer"
+                    width="auto"
+                    src="https://www.youtube.com/embed/vhII1qlcZ4E"
+                    frameborder="0"
+                    allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen
+                  ></iframe>
+                </>
+              )}
             </Row>
 
             {step === 0 && (
@@ -137,6 +158,7 @@ const App = () => {
               </>
             )}
 
+            {/* Bottom-Section Container */}
             <Row className="mt-5">
               <Col xs={6} className="pl-sm-0 my-auto">
                 <img src={naughtyDogLogo} alt="Naughty Dog Logo" className="w-100" />
