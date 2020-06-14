@@ -45,7 +45,7 @@ const App = () => {
   }
 
   const registerHandler = () => {
-    if (userName.length > 0 && /^[a-zA-Z0-9]+@(?:[a-zA-Z0-9]+\.)+[A-Za-z]+$/.test(userEmail)) {
+    if (userName.length > 0 && /^[a-zA-Z0-9]+(?:\.[a-zA-Z0-9]+)*@(?:[a-zA-Z0-9]+\.)+[A-Za-z]+$/.test(userEmail)) {
       setOpen(false);
       setStep(2);
       setMsgText("¡REGISTRO COMPLETADO!");
@@ -53,7 +53,7 @@ const App = () => {
       console.log("REGIStER!!");
     } else {
       setOpen(true);
-      console.log(/^[a-zA-Z0-9]+@(?:[a-zA-Z0-9]+\.)+[A-Za-z]+$/.test(userEmail))
+      console.log(/^[a-zA-Z0-9]+(?:\.[a-zA-Z0-9]+)*@(?:[a-zA-Z0-9]+\.)+[A-Za-z]+$/.test(userEmail))
     }
   }
 
@@ -131,13 +131,12 @@ const App = () => {
               )}
 
               {step === 2 && (
-                <div class="trailer-video-container embed-responsive embed-responsive-16by9">
+                <div className="trailer-video-container embed-responsive embed-responsive-16by9">
                   <p className="w-100 my-5 text-center">Cargando...</p>
                   <iframe
                     title="trailer-video"
-                    class="embed-responsive-item"
+                    className="embed-responsive-item"
                     src="https://www.youtube-nocookie.com/embed/vhII1qlcZ4E?start=1"
-                    allowfullscreen
                   ></iframe>
                 </div>
               )}
