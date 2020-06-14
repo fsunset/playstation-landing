@@ -28,6 +28,13 @@ $black:       #000000;
 	}
 }
 
+.custom-alert {
+	color: $black !important;
+	background-color: $dark-yellow !important;
+	padding: 1em;
+	font-size: 0.9em;
+}
+
 .small-text {
 	font-size: 0.55em;
 	@media (min-width: 768px) {
@@ -41,6 +48,9 @@ $black:       #000000;
 	@media (min-width: 992px) {
 		font-size: 1.5em;
 	}
+	@media (min-width: 1200px) {
+		font-size: 1.3em;
+	}
 	font-weight: 700;
 }
 
@@ -53,7 +63,9 @@ $black:       #000000;
 	border-bottom: 4px solid $yellow !important;
 }
 
-.btn {
+.btn,
+input,
+.custom-alert {
 	border-radius: 0.15em;
 }
 

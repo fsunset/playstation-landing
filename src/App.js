@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import './sass/main.scss';
-import {Button, Container, Row, Col} from 'react-bootstrap';
+import {Alert, Button, Collapse, Container, Row, Col} from 'react-bootstrap';
 
 import ps4Logo from './img/ps4Logo.png';
 import tlousLogo from './img/tlousLogo.png';
@@ -11,10 +11,16 @@ import parentalControlLogo from './img/parentalControlLogo.png';
 const App = () => {
   const termsLink = "https://www.playstation.com/es-ar/legal/terms-of-use/";
 
+  const [open, setOpen] = useState(false);
   const [step, setStep] = useState(0);
   const [checkboxActive, setCheckboxActive] = useState(false);
   const [btnIsDisabled, setBtnIsDisabled] = useState(true);
-  const [msgText, setMsgText] = useState("PARA ENTRAR A ESTE EVENTO ES NECESARIO SER MAYOR DE EDAD.")
+  const [msgText, setMsgText] = useState("PARA ENTRAR A ESTE EVENTO ES NECESARIO SER MAYOR DE EDAD.");
+
+  // For storing user's name & email
+  const [userName, setUserName] = useState("");
+  const [userEmail, setUserEmail] = useState("");
+
 
   const onClickCheckBoxHandler = () => {
     setCheckboxActive(!checkboxActive);
@@ -22,12 +28,27 @@ const App = () => {
   }
   
   const enterHandler = () => {
+    setBtnIsDisabled(true);
     setStep(1);
     setMsgText("¡NO TE PIERDAS EL EVENTO DE ESTRENO!");
   }
 
+  const inputValidationHandler = () => {
+    if (userName.length > 0 && userEmail.length > 0) {
+      setBtnIsDisabled(false);
+    } else {
+      setBtnIsDisabled(true);
+    }
+  }
+
   const registerHandler = () => {
-    console.log("REGIStER!!");
+    if (userName.length > 0 && /^[a-zA-Z0-9]+@(?:[a-zA-Z0-9]+\.)+[A-Za-z]+$/.test(userEmail)) {
+      setOpen(false);
+      console.log("REGIStER!!");
+    } else {
+      setOpen(true);
+      console.log(/^[a-zA-Z0-9]+@(?:[a-zA-Z0-9]+\.)+[A-Za-z]+$/.test(userEmail))
+    }
   }
 
   return (
@@ -74,8 +95,29 @@ const App = () => {
 
               {step === 1 && (
                 <>
-                  <input type="text" placeholder="NOMBRE" className="input-field mb-3" />
-                  <input type="email" placeholder="EMAIL" className="input-field mb-3" />
+                  <Collapse in={open}>
+                    <p className="custom-alert">Hay un error, por favor verifica los campos.</p>
+                  </Collapse>
+                  <input
+                    onBlur={() => inputValidationHandler()}
+                    onChange={e => {
+                      setUserName(e.target.value);
+                      inputValidationHandler();
+                    }}
+                    type="text"
+                    placeholder="NOMBRE"
+                    className="input-field mb-3"
+                  />
+                  <input
+                    onBlur={() => inputValidationHandler()}
+                    onChange={e => {
+                      setUserEmail(e.target.value);
+                      inputValidationHandler();
+                    }}
+                    type="email"
+                    placeholder="EMAIL"
+                    className="input-field mb-3"
+                  />
                   <Button disabled={btnIsDisabled} onClick={() => registerHandler()}>REGISTRARME</Button>
                 </>
               )}
