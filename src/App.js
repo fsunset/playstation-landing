@@ -62,7 +62,7 @@ function App() {
         </Container>
       </Container>
 
-      <footer className="text-center mt-5 mb-2 px-2">
+      <footer className="text-center mt-5 mb-2 px-3">
         <p className="small-text">
           “PlayStation”, “PlayStation Family Mark, “PS4 logo”, “PS4”and “DUALSHOCK” are registered trademarks or trademarks of Sony Interactive Entertainment Inc. “SONY” is a registered trademark of Sony Corporation.
         </p>
