@@ -43,12 +43,12 @@ $black:       #000000;
 }
 
 .yellow-text {
-	color: $yellow;
+	color: $yellow !important;
 	font-weight: 300;
 }
 
 .border-bottom-yellow {
-	border-bottom: 3px solid $yellow;
+	border-bottom: 3px solid $yellow !important;
 }
 
 .btn {
@@ -56,15 +56,15 @@ $black:       #000000;
 }
 
 .btn-primary {
-	color: $black;
-	background-color: $yellow;
-	border-color: $yellow;
+	color: $black !important;
+	background-color: $yellow !important;
+	border-color: $yellow !important;
 
 	&:hover,
 	&:not(:disabled):not(.disabled):active,
 	&:not(:disabled):not(.disabled).active {
-		color: $black;
-		background-color: $dark-yellow;
-		border-color: $dark-yellow;
+		color: $black !important;
+		background-color: $dark-yellow !important;
+		border-color: $dark-yellow !important;
 	}
 }

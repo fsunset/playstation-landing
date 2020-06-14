@@ -28,7 +28,7 @@
 
 		/* When the checkbox is checked, add a blue background */
 		&:checked ~ .checkmark {
-			background-color: $yellow;
+			background-color: $yellow !important;
 
 			/* Show the checkmark when checked */
 			&:after {
@@ -48,12 +48,12 @@
 			height: 35px;
 			width: 35px;
 		}
-		background-color: $yellow;
+		background-color: $yellow !important;
 		border-radius: 0.15em;
 		transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 
 		&:hover {
-			background-color: $dark-yellow;
+			background-color: $dark-yellow !important;
 		}
 
 		/* Create the checkmark/indicator (hidden when not checked) */

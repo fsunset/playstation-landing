@@ -7,13 +7,13 @@
 }
 
 body {
-	background-color: $black;
+	background-color: $black !important;
 	background-image: url(../img/bg.jpg);
 	background-size: cover;
 	background-position: top center;
 	background-repeat: no-repeat;
 
-	color: $white;
+	color: $white !important;
 	font-family: 'UniversLTStd', Arial, Helvetica, sans-serif;
 	font-stretch: condensed !important;
 	font-size: 16px;
