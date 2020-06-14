@@ -27,11 +27,18 @@ $black:       #000000;
 }
 
 .small-text {
-	font-size: 0.8em;
+	font-size: 0.55em;
+	@media (min-width: 768px) {
+		font-size: 0.8em;
+	}
 }
 
+
 .bold-text {
-	font-size: 1.6em;
+	font-size: 1.2em;
+	@media (min-width: 992px) {
+		font-size: 1.6em;
+	}
 	font-weight: 700;
 }
 
@@ -53,7 +60,9 @@ $black:       #000000;
 	background-color: $yellow;
 	border-color: $yellow;
 
-	&:hover {
+	&:hover,
+	&:not(:disabled):not(.disabled):active,
+	&:not(:disabled):not(.disabled).active {
 		color: $black;
 		background-color: $dark-yellow;
 		border-color: $dark-yellow;

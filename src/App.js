@@ -13,21 +13,21 @@ function App() {
     <div className="App main-container">
       <Container fluid className="pl-0 pr-0 main-child">
         <header>
-          <Col xs={12} sm={6} lg={5} xl={3}>
+          <Col xs={12} sm={7} lg={5} xl={4}>
             <img src={ps4Logo} alt="PS4 Logo" className="main-logo"/>
           </Col>
         </header>
 
         <Container>
           <Row>
-          <Col xs={12} md={{span: 5, offset: 1}} className="left-container">
+          <Col xs={6} sm={4} md={{span: 2, offset: 1}} className="left-container">
             <img src={tlousLogo} alt="The Last Of Us II" />
             <Row>
               <p className="bold-text">LA ESPERA FINAL</p>
             </Row>
           </Col>
 
-          <Col xs={12} md={{span: 3, offset:2}} className="right-container">
+          <Col xs={12} md={{span: 3, offset:4}} className="right-container mt-5 mt-md-0">
             <Row>
               <p className="bold-text">BIENVENIDO.</p>
               <p className="bold-text border-bottom-yellow">PARA ENTRAR A ESTE EVENTO ES NECESARIO SER MAYOR DE EDAD.</p>
@@ -50,10 +50,10 @@ function App() {
             </Row>
 
             <Row className="mt-5">
-              <Col xs={12} sm={6} className="pl-0 my-auto">
+              <Col xs={12} sm={6} className="pb-3 pl-sm-0 my-auto">
                 <img src={naughtyDogLogo} alt="Naughty Dog Logo" className="w-100" />
               </Col>
-              <Col xs={12} sm={6} className="pr-0 my-auto">
+              <Col xs={12} sm={6} className="pr-sm-0 my-auto">
                 <img src={parentalControlLogo} alt="Rated Mature 17+" className="w-100" />
               </Col>
             </Row>
@@ -62,7 +62,7 @@ function App() {
         </Container>
       </Container>
 
-      <footer className="text-center mt-5 mb-2">
+      <footer className="text-center mt-5 mb-2 px-2">
         <p className="small-text">
           “PlayStation”, “PlayStation Family Mark, “PS4 logo”, “PS4”and “DUALSHOCK” are registered trademarks or trademarks of Sony Interactive Entertainment Inc. “SONY” is a registered trademark of Sony Corporation.
         </p>
