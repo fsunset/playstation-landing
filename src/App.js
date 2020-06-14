@@ -10,6 +10,7 @@ import parentalControlLogo from './img/parentalControlLogo.png';
 
 
 const App = () => {
+  const emailRegEx = /^[a-zA-Z0-9]+(?:\.[a-zA-Z0-9]+)*@(?:[a-zA-Z0-9]+\.)+[A-Za-z]+$/;
   const termsLink = "https://www.playstation.com/es-ar/legal/terms-of-use/";
 
   const [open, setOpen] = useState(false);
@@ -45,7 +46,7 @@ const App = () => {
   }
 
   const registerHandler = () => {
-    if (userName.length > 0 && /^[a-zA-Z0-9]+(?:\.[a-zA-Z0-9]+)*@(?:[a-zA-Z0-9]+\.)+[A-Za-z]+$/.test(userEmail)) {
+    if (userName.length > 0 && emailRegEx.test(userEmail)) {
       setOpen(false);
       setStep(2);
       setMsgText("¡REGISTRO COMPLETADO!");
@@ -53,7 +54,7 @@ const App = () => {
       console.log("REGIStER!!");
     } else {
       setOpen(true);
-      console.log(/^[a-zA-Z0-9]+(?:\.[a-zA-Z0-9]+)*@(?:[a-zA-Z0-9]+\.)+[A-Za-z]+$/.test(userEmail))
+      console.log(emailRegEx.test(userEmail))
     }
   }
 
@@ -75,7 +76,7 @@ const App = () => {
             </Row>
           </Col>
 
-          <Col xs={12} md={{span: 4, offset:3}} lg={{span: 3, offset:4}} xl={{span: 3, offset:5}} className="right-container mt-5 mt-md-0">
+          <Col xs={12} md={{span: 4, offset:3}} lg={{span: 4, offset:3}} xl={{span: 4, offset:4}} className="right-container mt-5 mt-md-0">
             {/* Header-Section Container */}
             <Row>
               {step === 0 && (
@@ -90,7 +91,7 @@ const App = () => {
             </Row>
             
             {/* Body-Section Container */}
-            <Row className={step === 0 && ("my-5")}>
+            <Row className={step !== 1 && ("my-5")}>
               {step === 0 && (
                 <>
                   <p className="bold-text yellow-text checkbox-label">SOY MAYOR DE EDAD</p>
