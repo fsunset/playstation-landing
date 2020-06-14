@@ -1,0 +1,63 @@
+/*
+* Custom Checkbox
+*/
+
+.checkbox-label {
+	font-size: 1.2em;
+	margin: 0 3em 0 0;
+}
+
+.checkbox-container {
+	display: block;
+  position: relative;
+	cursor: pointer;
+	
+	/* Hide the browser's default checkbox */
+	input {
+		position: absolute;
+		opacity: 0;
+		cursor: pointer;
+		height: 0;
+		width: 0;
+
+		/* When the checkbox is checked, add a blue background */
+		&:checked ~ .checkmark {
+			background-color: $yellow;
+
+			/* Show the checkmark when checked */
+			&:after {
+				display: block;
+			}
+		}
+	}
+
+	/* Create a custom checkbox */
+	.checkmark {
+		position: absolute;
+		top: -5px;
+		right: 0;
+		height: 35px;
+		width: 35px;
+		background-color: $yellow;
+		border-radius: 0.15em;
+		transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+
+		&:hover {
+			background-color: $dark-yellow;
+		}
+
+		/* Create the checkmark/indicator (hidden when not checked) */
+		&:after {
+			content: "";
+			position: absolute;
+			display: none;
+			left: 15px;
+			top: 9px;
+			width: 8px;
+			height: 15px;
+			border: solid black;
+			border-width: 0 4px 4px 0;
+			transform: rotate(45deg);
+		}
+	}
+}

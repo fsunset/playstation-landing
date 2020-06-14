@@ -1,19 +1,56 @@
-@import "~bootstrap/scss/bootstrap";
+@import "./globals.scss";
+@import "./checkbox.scss";
+
+.h-33-3 {
+	height: 500px;
+	border: 1px solid white;
+}
 
 body {
-    background-color: #000;
-    background-image: url(../img/bg.jpg);
-    background-size: cover;
-    background-position: top center;
-		background-repeat: no-repeat;
-		
-		.main-container {
-			height: 100vh;
-			overflow: hidden;
+	background-color: $black;
+	background-image: url(../img/bg.jpg);
+	background-size: cover;
+	background-position: top center;
+	background-repeat: no-repeat;
 
-			.main-logo {
-        margin-left: -4em;
-				width: 100%;
+	color: $white;
+	font-family: 'UniversLTStd', Arial, Helvetica, sans-serif;
+	font-stretch: condensed !important;
+	font-size: 16px;
+	
+	.main-container {
+		min-height: 100vh;
+		overflow: hidden;
+
+		header {
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+		}
+
+		.main-logo {
+			margin-left: -4em;
+			width: 100%;
+		}
+
+		.main-child {
+			margin-top: 35% !important;
+			margin-bottom: 10% !important;
+			@media (min-width: 768px) {
+				margin-top: 10% !important;
+			}
+
+			.left-container {
+				img {
+					width: 32%;
+				}
+	
+				p {
+					font-size: 1.7em;
+					padding-left: 15px;
+				}
 			}
 		}
+	}
 }
