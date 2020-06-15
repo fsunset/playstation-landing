@@ -5,9 +5,11 @@ import {Button, Fade, Container, Row, Col} from 'react-bootstrap';
 import bg1 from './img/bg1.jpg';
 import ps4Logo from './img/ps4Logo.png';
 import tlousLogo from './img/tlousLogo.png';
+import spotifyImg from './img/spotify.png'
 import naughtyDogLogo from './img/naughtyDogLogo.png';
 import parentalControlLogo from './img/parentalControlLogo.png';
 
+import VideoComponent from './components/VideoComponent';
 
 const App = () => {
   const emailRegEx = /^[a-zA-Z0-9]+(?:\.[a-zA-Z0-9]+)*@(?:[a-zA-Z0-9]+\.)+[A-Za-z]+$/;
@@ -31,7 +33,6 @@ const App = () => {
   }
   
   const enterHandler = () => {
-    document.body.style.backgroundImage = `url(${bg1})`;
     setBtnIsDisabled(true);
     setStep(1);
     setMsgText("¡NO TE PIERDAS EL EVENTO DE ESTRENO!");
@@ -47,6 +48,9 @@ const App = () => {
 
   const registerHandler = () => {
     if (userName.length > 0 && emailRegEx.test(userEmail)) {
+      // Set new BG for body
+      document.body.style.backgroundImage = `url(${bg1})`;
+
       setOpen(false);
       setStep(2);
       setMsgText("¡REGISTRO COMPLETADO!");
@@ -60,6 +64,13 @@ const App = () => {
 
   return (
     <div className="App main-container">
+      {/* Setting video BG for Step 1 */}
+      {step === 1 && (
+        <Fade in={true}>
+          <VideoComponent />
+        </Fade>
+      )}
+
       <Container fluid className="pl-0 pr-0 main-child">
         <header>
           <Col xs={12} sm={7} lg={5} xl={4}>
@@ -132,14 +143,25 @@ const App = () => {
               )}
 
               {step === 2 && (
-                <div className="trailer-video-container embed-responsive embed-responsive-16by9">
-                  <p className="w-100 my-5 text-center">Cargando...</p>
-                  <iframe
-                    title="trailer-video"
-                    className="embed-responsive-item"
-                    src="https://www.youtube-nocookie.com/embed/vhII1qlcZ4E?start=1"
-                  ></iframe>
-                </div>
+                <>
+                  <div className="trailer-video-container embed-responsive embed-responsive-16by9">
+                    <p className="w-100 my-5 text-center">Cargando...</p>
+                    <iframe
+                      title="trailer-video"
+                      className="embed-responsive-item"
+                      src="https://www.youtube-nocookie.com/embed/ek-iAALNeRo"
+                    ></iframe>
+                  </div>
+
+                  <Row>
+                    <Col xs={12} sm={6}>
+                      <img src={spotifyImg} alt="Spotify" className="w-100 my-3" />
+                    </Col>
+                    <Col xs={12} sm={6}>
+                      <img src={spotifyImg} alt="Spotify" className="w-100 my-3" />
+                    </Col>
+                  </Row>
+                </>
               )}
             </Row>
 
@@ -171,7 +193,7 @@ const App = () => {
 
       <footer className="text-center mt-5 mb-2 px-3">
         <p className="small-text">
-          “PlayStation”, “PlayStation Family Mark, “PS4 logo”, “PS4”and “DUALSHOCK” are registered trademarks or trademarks of Sony Interactive Entertainment Inc. “SONY” is a registered trademark of Sony Corporation.
+          2020 Sony Interactive Entertainment LLC. Creado y desarrollado por Naughty Dog LLC. The Last of Us es una marca comercial de Sony Interactive Entertainment LLC. Naughty Dog es una marca comercial de Naughty Dog LLC 
         </p>
       </footer>
     </div>
