@@ -117,7 +117,8 @@ const App = () => {
 
           <Col xs={12} md={{span: 4, offset:3}} lg={{span: 4, offset:3}} xl={{span: 4, offset:4}} className="right-container mt-5 mt-md-0">
             {/* Header-Section Container */}
-            <Row className="watch-container text-right">
+            {step === 2 && (
+              <Row className="watch-container text-right">
               <Col xs={12}>
                 <p className="bold-text mb-0 header">FALTAN</p>
               </Col>
@@ -144,7 +145,8 @@ const App = () => {
                 <p className="bold-text mb-0">PARA EL ESTRENO</p>
               </Col>
             </Row>
-            
+            )}
+
             <Row>
               {step === 0 && (
                 <p className="bold-text">BIENVENIDO.</p>
