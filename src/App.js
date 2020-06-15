@@ -2,7 +2,8 @@ import React, {useState} from 'react';
 import './sass/main.scss';
 import {Button, Fade, Container, Row, Col} from 'react-bootstrap';
 
-import bg1 from './img/bg1.jpg';
+// import bg1 from './img/bg1.jpg';
+import bg2 from './img/bg2.jpg';
 import psLogo from './img/psLogo.png';
 import ps4Logo from './img/ps4Logo.png';
 import tlousLogo from './img/tlousLogo.png';
@@ -66,7 +67,7 @@ const App = () => {
   const registerHandler = () => {
     if (userName.length > 0 && emailRegEx.test(userEmail)) {
       // Set new BG for body
-      document.body.style.backgroundImage = `url(${bg1})`;
+      document.body.style.backgroundImage = `url(${bg2})`;
 
       setOpen(false);
       setStep(2);
