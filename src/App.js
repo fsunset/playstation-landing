@@ -14,6 +14,7 @@ import naughtyDogLogo from './img/naughtyDogLogo.png';
 import parentalControlLogo from './img/parentalControlLogo.png';
 import gamePreOrder from './img/gamePreOrder.png'
 
+import CountDownComponent from './components/CountDownComponent';
 import VideoComponent from './components/VideoComponent';
 import {
   FacebookShareButton,
@@ -116,6 +117,34 @@ const App = () => {
 
           <Col xs={12} md={{span: 4, offset:3}} lg={{span: 4, offset:3}} xl={{span: 4, offset:4}} className="right-container mt-5 mt-md-0">
             {/* Header-Section Container */}
+            <Row className="watch-container text-right">
+              <Col xs={12}>
+                <p className="bold-text mb-0 header">FALTAN</p>
+              </Col>
+              <Col xs={12} className="my-1 nums-container">
+                <Row className="mr-0">
+                  <CountDownComponent />
+                  <Col xs={{span: 2, offset:6}} className="num px-0 first">
+                    <p className="mb-0">&nbsp;</p>
+                    <p className="mb-0 bottom-text pt-1">HORAS</p>
+                  </Col>
+                  <Col xs={2} className="num px-0 middle">
+                    <p className="mb-0">&nbsp;</p>
+                    <p className="mb-0 bottom-text pt-1">MINS</p>
+
+                  </Col>
+                  <Col xs={2} className="num px-0 last">
+                    <p className="mb-0">&nbsp;</p>
+                    <p className="mb-0 bottom-text pt-1">SEGS</p>
+
+                  </Col>
+                </Row>
+              </Col>
+              <Col xs={12}>
+                <p className="bold-text mb-0">PARA EL ESTRENO</p>
+              </Col>
+            </Row>
+            
             <Row>
               {step === 0 && (
                 <p className="bold-text">BIENVENIDO.</p>

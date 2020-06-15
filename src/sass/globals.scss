@@ -12,6 +12,11 @@ $white:       #ffffff;
 $black:       #000000;
 
 @font-face {
+	font-family: 'dsDigItalic';
+  src: url('../fonts/DS-DIGIT.TTF') format('truetype');
+}
+
+@font-face {
 	font-family: 'UniversLTStd';
   src: url('../fonts/UniversLTStd.otf') format('otf');
 }
