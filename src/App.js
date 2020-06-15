@@ -274,6 +274,9 @@ const App = () => {
 
       <footer className="text-center mt-5 mb-2 px-3">
         <p className="small-text">
+          El evento digital se llevará a cabo el 18 de junio de 2020, desde las 23:00 hrs hasta las 00:20 hrs Argentina y 22:00 hrs hasta las 23:20 hrs Chile.
+        </p>
+        <p className="small-text">
           &copy; 2020 Sony Interactive Entertainment LLC. Creado y desarrollado por Naughty Dog LLC. The Last of Us es una marca comercial de Sony Interactive Entertainment LLC. Naughty Dog es una marca comercial registrada o marca comercial de Naughty Dog LLC. <strong>La marca de la familia PlayStation,PlayStation</strong> y el logo de <strong>PS4</strong> son marcas comerciales registradas o marcas comerciales de Sony Interactive Entertainment Inc.
         </p>
       </footer>
