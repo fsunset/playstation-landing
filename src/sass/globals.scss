@@ -4,8 +4,8 @@
 
 @import "~bootstrap/scss/bootstrap";
 
-$yellow:      #fec107;
-$dark-yellow: #e2b030;
+$main-colour:      #ffffff;
+$secondary-colour: #b9b8b8;
 $grey:        #333333;
 $soft-grey:   #747474;
 $white:       #ffffff;
@@ -35,7 +35,7 @@ $black:       #000000;
 
 .custom-alert {
 	color: $black !important;
-	background-color: $dark-yellow !important;
+	background-color: $main-colour !important;
 	padding: 1em;
 	font-size: 0.9em;
 }
@@ -60,12 +60,12 @@ $black:       #000000;
 }
 
 .yellow-text {
-	color: $yellow !important;
+	color: $main-colour !important;
 	font-weight: 300;
 }
 
 .border-bottom-yellow {
-	border-bottom: 4px solid $yellow !important;
+	border-bottom: 4px solid $main-colour !important;
 }
 
 button:focus {
@@ -80,24 +80,24 @@ input,
 
 .btn-primary {
 	color: $black !important;
-	background-color: $yellow !important;
-	border-color: $yellow !important;
+	background-color: $main-colour !important;
+	border-color: $main-colour !important;
 
 	&:hover,
 	&:not(:disabled):not(.disabled):active,
 	&:not(:disabled):not(.disabled).active {
 		color: $black !important;
-		background-color: rgba(199, 150, 1, 0.7) !important;
-		border-color: $dark-yellow !important;
+		background-color: rgba($secondary-colour, 0.8) !important;
+		border-color: $secondary-colour !important;
 	}
 }
 
 a {
-	color: $yellow !important;
+	color: $main-colour !important;
 
 	&:hover,
 	&:not(:disabled):not(.disabled):active,
 	&:not(:disabled):not(.disabled).active {
-		color: $yellow !important;
+		color: $main-colour !important;
 	}
 }
