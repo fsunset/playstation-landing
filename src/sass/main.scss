@@ -85,6 +85,38 @@ body {
     			margin-top: .5em;
 					padding-left: 15px;
 				}
+
+				.bottom-container {
+					position: relative;
+
+					> a {
+						width: 100%;
+						@media (min-width: 1200px) {
+							width: 80%;
+						}
+					}
+
+					.ps-logo {
+						display: none;
+						@media (min-width: 1200px) {
+							display: block;
+						}
+						position: absolute;
+						bottom: -250%;
+						width: 25%;
+						left: -5%;
+					}
+
+					.game-cover {
+						position: absolute;
+						bottom: -25px;
+						right: -70%;
+						width: 60%;
+						@media (min-width: 1200px) {
+							width: 80%;
+						}
+					}
+				}
 			}
 
 			.right-container {

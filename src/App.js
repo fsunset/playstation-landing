@@ -3,6 +3,7 @@ import './sass/main.scss';
 import {Button, Fade, Container, Row, Col} from 'react-bootstrap';
 
 import bg1 from './img/bg1.jpg';
+import psLogo from './img/psLogo.png';
 import ps4Logo from './img/ps4Logo.png';
 import tlousLogo from './img/tlousLogo.png';
 import spotifyImg from './img/spotify.png'
@@ -11,6 +12,7 @@ import facebookImg from './img/facebook.png'
 import twitterImg from './img/twitter.png'
 import naughtyDogLogo from './img/naughtyDogLogo.png';
 import parentalControlLogo from './img/parentalControlLogo.png';
+import gamePreOrder from './img/gamePreOrder.png'
 
 import VideoComponent from './components/VideoComponent';
 import {
@@ -94,6 +96,22 @@ const App = () => {
             <Row>
               <p className="bold-text">LA ESPERA FINAL</p>
             </Row>
+
+            {step === 2 && (
+              <div className="bottom-container">
+                <a
+                  href="https://www.playstation.com/es-ar/games/the-last-of-us-part-ii-ps4/preorder/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="btn btn-primary"
+                >
+                  ¡PRE-ORDENAR!
+                </a>
+
+                <img src={gamePreOrder} alt="Pre Order TLOUS II" className="game-cover" />
+                <img src={psLogo} alt="Play Station" className="ps-logo" />
+              </div>
+            )}
           </Col>
 
           <Col xs={12} md={{span: 4, offset:3}} lg={{span: 4, offset:3}} xl={{span: 4, offset:4}} className="right-container mt-5 mt-md-0">
