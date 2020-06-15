@@ -2,8 +2,9 @@ import React, {useState} from 'react';
 import './sass/main.scss';
 import {Button, Fade, Container, Row, Col} from 'react-bootstrap';
 
-// import bg1 from './img/bg1.jpg';
+import bg1 from './img/bg1.jpg';
 import bg2 from './img/bg2.jpg';
+import bg3 from './img/bg3.jpg';
 import psLogo from './img/psLogo.png';
 import ps4Logo from './img/ps4Logo.png';
 import tlousLogo from './img/tlousLogo.png';
@@ -16,7 +17,7 @@ import parentalControlLogo from './img/parentalControlLogo.png';
 import gamePreOrder from './img/gamePreOrder.png'
 
 import CountDownComponent from './components/CountDownComponent';
-import VideoComponent from './components/VideoComponent';
+// import VideoComponent from './components/VideoComponent';
 import {
   FacebookShareButton,
   TwitterShareButton,
@@ -55,6 +56,8 @@ const App = () => {
   }
   
   const enterHandler = () => {
+    // Set new BG for body
+    document.body.style.backgroundImage = `url(${bg1})`;
     setBtnIsDisabled(true);
     setStep(1);
     setMsgText("¡NO TE PIERDAS EL EVENTO DE ESTRENO!");
@@ -71,7 +74,7 @@ const App = () => {
   const registerHandler = () => {
     if (userName.length > 0 && emailRegEx.test(userEmail)) {
       // Set new BG for body
-      document.body.style.backgroundImage = `url(${bg2})`;
+      document.body.style.backgroundImage = `url(${bg3})`;
 
       setOpen(false);
       setStep(2);
@@ -92,11 +95,11 @@ const App = () => {
   return (
     <div className="App main-container">
       {/* Setting video BG for Step 1 */}
-      {step === 1 && (
+      {/* {step === 1 && (
         <Fade in={true}>
           <VideoComponent />
         </Fade>
-      )}
+      )} */}
 
       <Container fluid className="pl-0 pr-0 main-child">
         <header>
