@@ -22,10 +22,15 @@ import {
   WhatsappShareButton,
 } from "react-share";
 
+import Firebase from './firebaseConfig';
+
 const App = () => {
   const emailRegEx = /^[a-zA-Z0-9]+(?:\.[a-zA-Z0-9]+)*@(?:[a-zA-Z0-9]+\.)+[A-Za-z]+$/;
   const termsLink = "https://www.playstation.com/es-ar/legal/terms-of-use/";
   const msgSocialShare = "¡Hola! Revisa este enlace y no te pierdas este gran evento el próximo 18 de junio.";
+
+  // For saving info Firebase
+  const db = Firebase.firestore();
 
   const [open, setOpen] = useState(false);
   const [step, setStep] = useState(0);
@@ -67,7 +72,12 @@ const App = () => {
       setStep(2);
       setMsgText("¡REGISTRO COMPLETADO!");
       setSubTitleText("Revisa tu correo y no te pierdas este gran evento el próximo 18 de junio.");
-      console.log("REGIStER!!");
+      
+      // Saving info Firebase DB
+      db.collection("users").add({
+        name: userName,
+        email: userEmail,
+      });
     } else {
       setOpen(true);
       console.log(emailRegEx.test(userEmail))
@@ -104,7 +114,7 @@ const App = () => {
                   href="https://www.playstation.com/es-ar/games/the-last-of-us-part-ii-ps4/preorder/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  class="btn btn-primary"
+                  className="btn btn-primary"
                 >
                   ¡PRE-ORDENAR!
                 </a>
@@ -213,7 +223,7 @@ const App = () => {
 
                   <Row className="share-container">
                     <Col xs={6}>
-                      <a href="https://open.spotify.com/playlist/1hUVwrn5CxsxzZl3PQazC3" target="_blank" rel="noopener noreferrer">
+                      <a href="https://open.spotify.com/playlist/2jrFMHRaVdaoFzhaMvw6gH" target="_blank" rel="noopener noreferrer">
                         <img src={spotifyImg} alt="Spotify" className="w-100 my-3" />
                       </a>
                     </Col>
@@ -264,7 +274,7 @@ const App = () => {
 
       <footer className="text-center mt-5 mb-2 px-3">
         <p className="small-text">
-          2020 Sony Interactive Entertainment LLC. Creado y desarrollado por Naughty Dog LLC. The Last of Us es una marca comercial de Sony Interactive Entertainment LLC. Naughty Dog es una marca comercial de Naughty Dog LLC 
+          &copy; 2020 Sony Interactive Entertainment LLC. Creado y desarrollado por Naughty Dog LLC. The Last of Us es una marca comercial de Sony Interactive Entertainment LLC. Naughty Dog es una marca comercial registrada o marca comercial de Naughty Dog LLC. <strong>La marca de la familia PlayStation,PlayStation</strong> y el logo de <strong>PS4</strong> son marcas comerciales registradas o marcas comerciales de Sony Interactive Entertainment Inc.
         </p>
       </footer>
     </div>
