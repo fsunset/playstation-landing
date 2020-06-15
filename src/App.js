@@ -6,14 +6,23 @@ import bg1 from './img/bg1.jpg';
 import ps4Logo from './img/ps4Logo.png';
 import tlousLogo from './img/tlousLogo.png';
 import spotifyImg from './img/spotify.png'
+import whatsAppImg from './img/whatsApp.png'
+import facebookImg from './img/facebook.png'
+import twitterImg from './img/twitter.png'
 import naughtyDogLogo from './img/naughtyDogLogo.png';
 import parentalControlLogo from './img/parentalControlLogo.png';
 
 import VideoComponent from './components/VideoComponent';
+import {
+  FacebookShareButton,
+  TwitterShareButton,
+  WhatsappShareButton,
+} from "react-share";
 
 const App = () => {
   const emailRegEx = /^[a-zA-Z0-9]+(?:\.[a-zA-Z0-9]+)*@(?:[a-zA-Z0-9]+\.)+[A-Za-z]+$/;
   const termsLink = "https://www.playstation.com/es-ar/legal/terms-of-use/";
+  const msgSocialShare = "¡Hola! Revisa este enlace y no te pierdas este gran evento el próximo 18 de junio.";
 
   const [open, setOpen] = useState(false);
   const [step, setStep] = useState(0);
@@ -153,12 +162,25 @@ const App = () => {
                     ></iframe>
                   </div>
 
-                  <Row>
-                    <Col xs={12} sm={6}>
-                      <img src={spotifyImg} alt="Spotify" className="w-100 my-3" />
+                  <Row className="share-container">
+                    <Col xs={6}>
+                      <a href="https://open.spotify.com/playlist/1hUVwrn5CxsxzZl3PQazC3" target="_blank" rel="noopener noreferrer">
+                        <img src={spotifyImg} alt="Spotify" className="w-100 my-3" />
+                      </a>
                     </Col>
-                    <Col xs={12} sm={6}>
-                      <img src={spotifyImg} alt="Spotify" className="w-100 my-3" />
+                    <Col xs={6} className="mt-3 text-right">
+                      <span>Compartir</span>
+                      <WhatsappShareButton url={window.location.href} title={msgSocialShare} >
+                          <img src={whatsAppImg} alt="WhatsApp Img" className="share-icon" />
+                      </WhatsappShareButton>
+
+                      <TwitterShareButton url={window.location.href} title={msgSocialShare} >
+                          <img src={twitterImg} alt="Twitter Img" className="share-icon" />
+                      </TwitterShareButton>
+
+                      <FacebookShareButton url={window.location.href} quote={msgSocialShare} >
+                          <img src={facebookImg} alt="Facebook Img" className="share-icon" />
+                      </FacebookShareButton>
                     </Col>
                   </Row>
                 </>

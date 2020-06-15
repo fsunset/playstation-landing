@@ -63,6 +63,10 @@ $black:       #000000;
 	border-bottom: 4px solid $yellow !important;
 }
 
+button:focus {
+	outline: none !important;
+}
+
 .btn,
 input,
 .custom-alert {
