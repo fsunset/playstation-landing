@@ -33,6 +33,10 @@ const App = () => {
   // For saving info Firebase
   const db = Firebase.firestore();
 
+  // Sending Email to user; after saving into DB
+  // let functions = Firebase.functions();
+  // const SENDGRID_KEY = functions.config().sendgrid.key;
+
   const [open, setOpen] = useState(false);
   const [step, setStep] = useState(0);
   const [checkboxActive, setCheckboxActive] = useState(false);
