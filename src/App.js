@@ -18,6 +18,7 @@ import naughtyDogLogo from './img/naughtyDogLogo.png';
 import parentalControlLogo from './img/parentalControlLogo.png';
 import gamePreOrder from './img/gamePreOrder.png'
 
+import sendEmail from './sendEmail'
 import DateCountdown from 'react-date-countdown-timer';
 // import CountDownComponent from './components/CountDownComponent';
 // import VideoComponent from './components/VideoComponent';
@@ -114,6 +115,8 @@ const App = () => {
         name: userName,
         email: userEmail,
       });
+
+      sendEmail(userEmail);
 
       // Set new BG for body
       document.body.style.backgroundImage = `url(${bg3})`;
