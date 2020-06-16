@@ -1,7 +1,9 @@
 import React, {useState} from 'react';
 import './sass/main.scss';
 import {Button, Fade, Container, Row, Col} from 'react-bootstrap';
+import moment from 'moment';
 
+import bg from './img/bg.jpg';
 import bg1 from './img/bg1.jpg';
 import bg2 from './img/bg2.jpg';
 import bg3 from './img/bg3.jpg';
@@ -16,7 +18,8 @@ import naughtyDogLogo from './img/naughtyDogLogo.png';
 import parentalControlLogo from './img/parentalControlLogo.png';
 import gamePreOrder from './img/gamePreOrder.png'
 
-import CountDownComponent from './components/CountDownComponent';
+import DateCountdown from 'react-date-countdown-timer';
+// import CountDownComponent from './components/CountDownComponent';
 // import VideoComponent from './components/VideoComponent';
 import {
   FacebookShareButton,
@@ -34,21 +37,47 @@ const App = () => {
   // For saving info Firebase
   const db = Firebase.firestore();
 
-  // Sending Email to user; after saving into DB
-  // let functions = Firebase.functions();
-  // const SENDGRID_KEY = functions.config().sendgrid.key;
-
   const [open, setOpen] = useState(false);
   const [step, setStep] = useState(0);
   const [checkboxActive, setCheckboxActive] = useState(false);
   const [btnIsDisabled, setBtnIsDisabled] = useState(true);
-  const [msgText, setMsgText] = useState("PARA ENTRAR A ESTE EVENTO ES NECESARIO SER MAYOR DE EDAD.");
+  const [msgText, setMsgText] = useState("");
   const [subTitleText, setSubTitleText] = useState("Regístrate para activar una alerta en tu calendario.");
+
+  // Show/Hide "Age Comprobation"
+  let date = moment("2020-06-18T21:00:00");
+  let now = moment();
+  let streaminIsLive;
+
+  if (now < date) {
+    streaminIsLive = false;
+    // Set new BG for body
+    // document.body.style.backgroundImage = `url(${bg1})`;
+  } else {
+    // Set new BG for body
+    // document.body.style.backgroundImage = `url(${bg})`;
+    streaminIsLive = true;
+  }
+
+  // CountDown Watch
+  const CountDownComponent = () => {
+    return (
+			<DateCountdown
+				dateTo='June 18, 2020 00:00:00 GMT-05:00'
+				locales={[]}
+				locales_plural={[]}
+				mostSignificantFigure="hour"
+        numberOfFigures={3}
+        // Refresh page once the Streaming's Time is reached
+				callback={() => window.location.reload()} 
+			/>
+    )
+  }
+
 
   // For storing user's name & email
   const [userName, setUserName] = useState("");
   const [userEmail, setUserEmail] = useState("");
-
 
   const onClickCheckBoxHandler = () => {
     setCheckboxActive(!checkboxActive);
@@ -56,11 +85,13 @@ const App = () => {
   }
   
   const enterHandler = () => {
+    streaminIsLive = true;
     // Set new BG for body
-    document.body.style.backgroundImage = `url(${bg1})`;
+    document.body.style.backgroundImage = `url(${bg2})`;
     setBtnIsDisabled(true);
-    setStep(1);
-    setMsgText("¡NO TE PIERDAS EL EVENTO DE ESTRENO!");
+    setMsgText("TRANSMISIÓN OFICIAL");
+    setSubTitleText("");
+    setStep(3);
   }
 
   const inputValidationHandler = () => {
@@ -73,9 +104,6 @@ const App = () => {
 
   const registerHandler = () => {
     if (userName.length > 0 && emailRegEx.test(userEmail)) {
-      // Set new BG for body
-      document.body.style.backgroundImage = `url(${bg3})`;
-
       setOpen(false);
       setStep(2);
       setMsgText("¡REGISTRO COMPLETADO!");
@@ -86,11 +114,15 @@ const App = () => {
         name: userName,
         email: userEmail,
       });
+
+      // Set new BG for body
+      document.body.style.backgroundImage = `url(${bg3})`;
     } else {
       setOpen(true);
-      console.log(emailRegEx.test(userEmail))
     }
   }
+
+  console.log("step: "+step);
 
   return (
     <div className="App main-container">
@@ -116,7 +148,7 @@ const App = () => {
               <p className="bold-text">LA ESPERA FINAL</p>
             </Row>
 
-            {step === 2 && (
+            {step === 3 && (
               <div className="bottom-container">
                 <a
                   href="https://www.playstation.com/es-ar/games/the-last-of-us-part-ii-ps4/preorder/"
@@ -135,7 +167,7 @@ const App = () => {
 
           <Col xs={12} md={{span: 4, offset:3}} lg={{span: 4, offset:3}} xl={{span: 4, offset:4}} className="right-container mt-5 mt-md-0">
             {/* Header-Section Container */}
-            {step === 2 && (
+            {step === 3 && (
               <Row className="watch-container text-right">
               <Col xs={12}>
                 <p className="bold-text mb-0 header">FALTAN</p>
@@ -166,20 +198,25 @@ const App = () => {
             )}
 
             <Row>
-              {step === 0 && (
-                <p className="bold-text">BIENVENIDO.</p>
+              {(!!streaminIsLive && step === 0) && (
+                <>
+                  <p className="bold-text">BIENVENIDO.</p>
+                  <p className="bold-text border-bottom-yellow">PARA ENTRAR A ESTE EVENTO ES NECESARIO SER MAYOR DE EDAD.</p>
+                </>
               )}
-              
-              <p className="bold-text border-bottom-yellow">{msgText}</p>
+              {(step === 2 || step === 3) && (
+                <p className="bold-text border-bottom-yellow">{msgText}</p>
+              )}
+              {(!streaminIsLive && step !== 2) && (
+                <p className="bold-text border-bottom-yellow">¡NO TE PIERDAS EL EVENTO DE ESTRENO!</p>
+              )}
 
-              {step !== 0 && (
-                <p>{subTitleText}</p>
-              )}
+              <p>{subTitleText}</p>
             </Row>
             
             {/* Body-Section Container */}
             <Row className={step !== 1 && ("my-5")}>
-              {step === 0 && (
+              {(!!streaminIsLive && step === 0) && (
                 <>
                   <p className="bold-text yellow-text checkbox-label">SOY MAYOR DE EDAD</p>
                   <label className="checkbox-container">
@@ -189,7 +226,7 @@ const App = () => {
                 </>
               )}
 
-              {step === 1 && (
+              {(step === 0 && !streaminIsLive) && (
                 <>
                   <Fade in={open}>
                     <p className="custom-alert">Hay un error, por favor verifica los campos.</p>
@@ -218,43 +255,43 @@ const App = () => {
                 </>
               )}
 
-              {step === 2 && (
-                <>
-                  <div className="trailer-video-container embed-responsive embed-responsive-16by9">
-                    <p className="w-100 my-5 text-center">Cargando...</p>
-                    <iframe
-                      title="trailer-video"
-                      className="embed-responsive-item"
-                      src="https://www.youtube-nocookie.com/embed/ek-iAALNeRo"
-                    ></iframe>
-                  </div>
+              {(step === 2 || step === 3) && (
+                <div className="trailer-video-container embed-responsive embed-responsive-16by9">
+                  <p className="w-100 my-5 text-center">Cargando...</p>
+                  <iframe
+                    title="trailer-video"
+                    className="embed-responsive-item"
+                    src="https://www.youtube-nocookie.com/embed/ek-iAALNeRo"
+                  ></iframe>
+                </div>
+              )}
 
-                  <Row className="share-container">
-                    <Col xs={6}>
-                      <a href="https://open.spotify.com/playlist/2jrFMHRaVdaoFzhaMvw6gH" target="_blank" rel="noopener noreferrer">
-                        <img src={spotifyImg} alt="Spotify" className="w-100 my-3" />
-                      </a>
-                    </Col>
-                    <Col xs={6} className="mt-3 text-right">
-                      <span>Compartir</span>
-                      <WhatsappShareButton url={window.location.href} title={msgSocialShare} >
-                          <img src={whatsAppImg} alt="WhatsApp Img" className="share-icon" />
-                      </WhatsappShareButton>
+              {step === 3 && (
+                <Row className="share-container">
+                  <Col xs={6}>
+                    <a href="https://open.spotify.com/playlist/2jrFMHRaVdaoFzhaMvw6gH" target="_blank" rel="noopener noreferrer">
+                      <img src={spotifyImg} alt="Spotify" className="w-100 my-3" />
+                    </a>
+                  </Col>
+                  <Col xs={6} className="mt-3 text-right">
+                    <span>Compartir</span>
+                    <WhatsappShareButton url={window.location.href} title={msgSocialShare} >
+                        <img src={whatsAppImg} alt="WhatsApp Img" className="share-icon" />
+                    </WhatsappShareButton>
 
-                      <TwitterShareButton url={window.location.href} title={msgSocialShare} >
-                          <img src={twitterImg} alt="Twitter Img" className="share-icon" />
-                      </TwitterShareButton>
+                    <TwitterShareButton url={window.location.href} title={msgSocialShare} >
+                        <img src={twitterImg} alt="Twitter Img" className="share-icon" />
+                    </TwitterShareButton>
 
-                      <FacebookShareButton url={window.location.href} quote={msgSocialShare} >
-                          <img src={facebookImg} alt="Facebook Img" className="share-icon" />
-                      </FacebookShareButton>
-                    </Col>
-                  </Row>
-                </>
+                    <FacebookShareButton url={window.location.href} quote={msgSocialShare} >
+                        <img src={facebookImg} alt="Facebook Img" className="share-icon" />
+                    </FacebookShareButton>
+                  </Col>
+                </Row>
               )}
             </Row>
 
-            {step === 0 && (
+            {(!!streaminIsLive && step === 0) && (
               <>
                 <Row>
                   <p>Al enviar esta forma manifiesta su conformidad con la <a href={termsLink} target="_blank" rel="noopener noreferrer">política de confidencialidad.</a></p>
