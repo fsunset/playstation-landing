@@ -30,6 +30,21 @@ import {
 
 import Firebase from './firebaseConfig';
 
+// Show/Hide "Age Comprobation"
+let date = moment("2020-06-18T21:00:00");
+let now = moment();
+let streaminIsLive;
+
+if (now < date) {
+  streaminIsLive = false;
+  // Set new BG for body
+  document.body.style.backgroundImage = `url(${bg1})`;
+} else {
+  // Set new BG for body
+  document.body.style.backgroundImage = `url(${bg})`;
+  streaminIsLive = true;
+}
+
 const App = () => {
   const emailRegEx = /^[a-zA-Z0-9]+(?:\.[a-zA-Z0-9]+)*@(?:[a-zA-Z0-9]+\.)+[A-Za-z]+$/;
   const termsLink = "https://www.playstation.com/es-ar/legal/terms-of-use/";
@@ -44,21 +59,6 @@ const App = () => {
   const [btnIsDisabled, setBtnIsDisabled] = useState(true);
   const [msgText, setMsgText] = useState("");
   const [subTitleText, setSubTitleText] = useState("Regístrate para activar una alerta en tu calendario.");
-
-  // Show/Hide "Age Comprobation"
-  let date = moment("2020-06-18T21:00:00");
-  let now = moment();
-  let streaminIsLive;
-
-  if (now < date) {
-    streaminIsLive = false;
-    // Set new BG for body
-    // document.body.style.backgroundImage = `url(${bg1})`;
-  } else {
-    // Set new BG for body
-    // document.body.style.backgroundImage = `url(${bg})`;
-    streaminIsLive = true;
-  }
 
   // CountDown Watch
   const CountDownComponent = () => {
