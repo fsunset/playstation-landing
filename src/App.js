@@ -31,7 +31,7 @@ import {
 import Firebase from './firebaseConfig';
 
 // Show/Hide "Age Comprobation"
-let date = moment("2020-06-18T21:00:00");
+let date = moment("2020-06-14T21:00:00");
 let now = moment();
 let streaminIsLive;
 
@@ -44,6 +44,15 @@ if (now < date) {
   document.body.style.backgroundImage = `url(${bg})`;
   streaminIsLive = true;
 }
+
+let cookieValue = document.cookie.replace(/(?:(?:^|.*;\s*)userCurrentCounry\s*\=\s*([^;]*).*$)|^.*$/, "$1");
+let currentUserCountry = cookieValue.replace(/['"]+/g, '').toLowerCase();
+if (currentUserCountry === "arg") {
+  currentUserCountry = "ar"
+} else if (currentUserCountry === "chl") {
+  currentUserCountry = "cl"
+}
+let preOrderLink = "https://www.playstation.com/es-" + currentUserCountry + "/games/the-last-of-us-part-ii-ps4/preorder/";
 
 const App = () => {
   const emailRegEx = /^[a-zA-Z0-9]+(?:\.[a-zA-Z0-9]+)*@(?:[a-zA-Z0-9]+\.)+[A-Za-z]+$/;
@@ -125,7 +134,7 @@ const App = () => {
     }
   }
 
-  console.log("step: "+step);
+  // console.log("step: "+step);
 
   return (
     <div className="App main-container">
@@ -154,7 +163,7 @@ const App = () => {
             {step === 3 && (
               <div className="bottom-container">
                 <a
-                  href="https://www.playstation.com/es-ar/games/the-last-of-us-part-ii-ps4/preorder/"
+                  href={preOrderLink}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="btn btn-primary"
