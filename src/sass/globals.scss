@@ -44,6 +44,9 @@ $black:       #000000;
 	background-size: cover;
 	background-repeat: no-repeat !important;
 	font-weight: bold !important;
+	@media (max-width: 1023px) {
+		margin-top: -2em;
+	}
 }
 
 .small-text {
