@@ -13,6 +13,13 @@
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
     
     <title>PlayStation - The Last of Us parte 2</title>
+
+    <script>
+      var host = "www.thelastofuspartiilaesperafinal.com" || "thelastofuspartiilaesperafinal.com";
+      if ((host == window.location.host) && (window.location.protocol != "https:")){
+        window.location.protocol = "https";
+      }
+    </script>
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
