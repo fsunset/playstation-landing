@@ -77,7 +77,7 @@ if (now === streamingEnd || now > streamingEnd) {
 
 const App = () => {
   // Basic constants
-  const emailRegEx = /^[a-zA-Z0-9]+(?:\.[a-zA-Z0-9]+)*@(?:[a-zA-Z0-9]+\.)+[A-Za-z]+$/;
+  const emailRegEx = /^[a-zA-Z0-9]+(?:[_.-][a-zA-Z0-9]+)*@(?:[a-zA-Z0-9]+\.)+[A-Za-z]+$/;
   const termsLink = "https://www.playstation.com/es-ar/legal/terms-of-use/";
   const msgSocialShare = "¡Hola! Revisa este enlace y no te pierdas este gran evento el próximo 18 de junio.";
 
