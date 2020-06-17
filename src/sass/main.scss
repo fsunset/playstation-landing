@@ -8,7 +8,7 @@
 
 body {
 	background-color: $black !important;
-	background-image: url(../img/bg1.jpg);
+	// background-image: url(../img/bg.jpg);
 	background-size: cover;
 	background-position: top center;
 	background-repeat: no-repeat;
@@ -97,6 +97,15 @@ body {
 						@media (min-width: 1299px) {
 							width: 80%;
 						}
+
+						&.buy-game-dig {
+							position: absolute;
+							right: -90%;
+							width: 110%;
+							@media (min-width: 1200px) {
+								width: 100%;
+							}
+						}
 					}
 
 					.ps-logo {
@@ -117,6 +126,49 @@ body {
 						width: 60%;
 						@media (min-width: 1299px) {
 							right: -60%;
+						}
+					}
+
+					.order-game-cover {
+						position: absolute;
+						right: -55%;
+						bottom: 125%;
+						height: 170%;
+						@media (min-width: 1299px) {
+							height: 330%;
+							right: -52%;
+							bottom: 180%;
+						}
+						@media (min-width: 1399px) {
+							height: 430%;
+							right: -50%;
+						}
+						width: auto;
+
+						&.digital {
+							right: -90%;
+							height: 120%;
+							bottom: 135%;
+							@media (min-width: 1299px) {
+								height: 260%;
+								bottom: 200%;
+							}
+							@media (min-width: 1399px) {
+								height: 330%;
+							}
+						}
+					}
+
+					.game-title {
+						border-bottom: 2px solid $white !important;
+						position: absolute;
+						top: -383%;
+						right: -50%;
+						font-size: 0.45em;
+						@media (min-width: 1399px) {
+							top: -575%;
+							right: -44%;
+							font-size: 0.7em;
 						}
 					}
 				}

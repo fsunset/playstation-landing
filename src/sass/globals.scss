@@ -35,9 +35,15 @@ $black:       #000000;
 
 .custom-alert {
 	color: $black !important;
-	background-color: $main-colour !important;
 	padding: 1em;
 	font-size: 0.9em;
+	background-color: transparent !important;
+	border: none !important;
+	background-image: url('../img/btnBg.png') !important;
+	background-position: bottom right;
+	background-size: cover;
+	background-repeat: no-repeat !important;
+	font-weight: bold !important;
 }
 
 .small-text {
@@ -80,15 +86,20 @@ input,
 
 .btn-primary {
 	color: $black !important;
-	background-color: $main-colour !important;
-	border-color: $main-colour !important;
+	background-color: transparent !important;
+	border: none !important;
+	background-image: url('../img/btnBg.png') !important;
+	background-position: bottom right;
+	background-size: cover;
+	background-repeat: no-repeat !important;
+	font-weight: bold !important;
+	padding-top: 0.5rem !important;
 
 	&:hover,
 	&:not(:disabled):not(.disabled):active,
 	&:not(:disabled):not(.disabled).active {
 		color: $black !important;
-		background-color: rgba($secondary-colour, 0.8) !important;
-		border-color: $secondary-colour !important;
+		background-color: transparent !important;
 	}
 }
 
@@ -99,5 +110,19 @@ a {
 	&:not(:disabled):not(.disabled):active,
 	&:not(:disabled):not(.disabled).active {
 		color: $main-colour !important;
+	}
+}
+
+.modal-content {
+	background: rgba($black, 0.6) !important;
+
+	.modal-body {
+		> p {
+			text-transform: uppercase !important;
+		}
+	}
+
+	.modal-footer {
+		border-top: none !important;
 	}
 }

@@ -3,8 +3,9 @@ import './sass/main.scss';
 import {Button, Fade, Container, Row, Col} from 'react-bootstrap';
 import moment from 'moment';
 
+
 import bg from './img/bg.jpg';
-import bg1 from './img/bg1.jpg';
+// import bg1 from './img/bg1.jpg';
 import bg2 from './img/bg2.jpg';
 import bg3 from './img/bg3.jpg';
 import psLogo from './img/psLogo.png';
@@ -17,11 +18,14 @@ import twitterImg from './img/twitter.png'
 import naughtyDogLogo from './img/naughtyDogLogo.png';
 import parentalControlLogo from './img/parentalControlLogo.png';
 import gamePreOrder from './img/gamePreOrder.png'
+import gameOrder from './img/gameOrder.png'
+import gameOrderDigital from './img/gameOrderDigital.png'
 
-import sendEmail from './sendEmail'
+import sendEmail from './sendEmail';
+import ModalComponent from './components/ModalComponent'
 import DateCountdown from 'react-date-countdown-timer';
 // import CountDownComponent from './components/CountDownComponent';
-// import VideoComponent from './components/VideoComponent';
+import VideoComponent from './components/VideoComponent';
 import {
   FacebookShareButton,
   TwitterShareButton,
@@ -31,30 +35,48 @@ import {
 import Firebase from './firebaseConfig';
 
 // Show/Hide "Age Comprobation"
-let date = moment("2020-06-14T21:00:00");
+let beforeStreamingIsLive;
+let currentlyStreaming;
+let afterStreamingIsLive;
+let streamingEnd = moment("2020-06-18T22:00:00");
+let streamingDate = moment("2020-06-18T21:00:00");
+let eventDate = moment("2020-06-18T20:00:00");
 let now = moment();
-let streaminIsLive;
 
-if (now < date) {
-  streaminIsLive = false;
+if (now < eventDate) {
+  beforeStreamingIsLive = false;
   // Set new BG for body
-  document.body.style.backgroundImage = `url(${bg1})`;
+  // document.body.style.backgroundImage = `url(${bg1})`;
 } else {
   // Set new BG for body
   document.body.style.backgroundImage = `url(${bg})`;
-  streaminIsLive = true;
+  beforeStreamingIsLive = true;
 }
 
-let cookieValue = document.cookie.replace(/(?:(?:^|.*;\s*)userCurrentCounry\s*\=\s*([^;]*).*$)|^.*$/, "$1");
-let currentUserCountry = cookieValue.replace(/['"]+/g, '').toLowerCase();
-if (currentUserCountry === "arg") {
-  currentUserCountry = "ar"
-} else if (currentUserCountry === "chl") {
-  currentUserCountry = "cl"
+if (now === streamingDate || now > streamingDate) {
+  currentlyStreaming = true;
+} else {
+  currentlyStreaming = false;
 }
-let preOrderLink = "https://www.playstation.com/es-" + currentUserCountry + "/games/the-last-of-us-part-ii-ps4/preorder/";
+
+if (now === streamingEnd || now > streamingEnd) {
+  afterStreamingIsLive = true;
+} else {
+  afterStreamingIsLive = false;
+}
+
+// eslint-disable-next-line
+// let cookieValue = document.cookie.replace(/(?:(?:^|.*;\s*)userCurrentCounry\s*\=\s*([^;]*).*$)|^.*$/, "$1");
+// let currentUserCountry = cookieValue.replace(/['"]+/g, '').toLowerCase();
+// if (currentUserCountry === "arg") {
+//   currentUserCountry = "ar"
+// } else if (currentUserCountry === "chl") {
+//   currentUserCountry = "cl"
+// }
+// let preOrderLink = "https://www.playstation.com/es-" + currentUserCountry + "/games/the-last-of-us-part-ii-ps4/preorder/";
 
 const App = () => {
+  // Basic constants
   const emailRegEx = /^[a-zA-Z0-9]+(?:\.[a-zA-Z0-9]+)*@(?:[a-zA-Z0-9]+\.)+[A-Za-z]+$/;
   const termsLink = "https://www.playstation.com/es-ar/legal/terms-of-use/";
   const msgSocialShare = "¡Hola! Revisa este enlace y no te pierdas este gran evento el próximo 18 de junio.";
@@ -62,6 +84,8 @@ const App = () => {
   // For saving info Firebase
   const db = Firebase.firestore();
 
+  // Hooks
+  const [modalShow, setModalShow] = useState(false);
   const [open, setOpen] = useState(false);
   const [step, setStep] = useState(0);
   const [checkboxActive, setCheckboxActive] = useState(false);
@@ -73,17 +97,19 @@ const App = () => {
   const CountDownComponent = () => {
     return (
 			<DateCountdown
-				dateTo='June 18, 2020 00:00:00 GMT-05:00'
+        dateTo='June 18, 2020 22:00:00 GMT-05:00'
 				locales={[]}
 				locales_plural={[]}
 				mostSignificantFigure="hour"
         numberOfFigures={3}
-        // Refresh page once the Streaming's Time is reached
-				callback={() => window.location.reload()} 
+				callback={
+          () => {
+            // window.location.reload();
+          }
+        }
 			/>
     )
   }
-
 
   // For storing user's name & email
   const [userName, setUserName] = useState("");
@@ -95,7 +121,7 @@ const App = () => {
   }
   
   const enterHandler = () => {
-    streaminIsLive = true;
+    beforeStreamingIsLive = true;
     // Set new BG for body
     document.body.style.backgroundImage = `url(${bg2})`;
     setBtnIsDisabled(true);
@@ -134,16 +160,19 @@ const App = () => {
     }
   }
 
-  // console.log("step: "+step);
-
   return (
     <div className="App main-container">
+      <ModalComponent
+        show={modalShow}
+        onHide={() => setModalShow(false)}
+      />
+
       {/* Setting video BG for Step 1 */}
-      {/* {step === 1 && (
+      {(step === 0 && !beforeStreamingIsLive) && (
         <Fade in={true}>
           <VideoComponent />
         </Fade>
-      )} */}
+      )}
 
       <Container fluid className="pl-0 pr-0 main-child">
         <header>
@@ -162,16 +191,47 @@ const App = () => {
 
             {step === 3 && (
               <div className="bottom-container">
-                <a
-                  href={preOrderLink}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="btn btn-primary"
-                >
-                  ¡PRE-ORDENAR!
-                </a>
+                {!!afterStreamingIsLive ? (
+                  <>
+                    <Button
+                      // href={preOrderLink}
+                      // target="_blank"
+                      // rel="noopener noreferrer"
+                      className="btn btn-primary"
+                      onClick={() => setModalShow(true)}
+                    >
+                      COMPRAR DISCO
+                    </Button>
+                    <Button
+                      // href={preOrderLink}
+                      // target="_blank"
+                      // rel="noopener noreferrer"
+                      className="btn btn-primary buy-game-dig"
+                      onClick={() => setModalShow(true)}
+                    >
+                      COMPRAR JUEGO DIGITAL
+                    </Button>
 
-                <img src={gamePreOrder} alt="Pre Order TLOUS II" className="game-cover" />
+                    <span className="tex-bold game-title">EDICIÓN ESTÁNDAR</span>
+                    <img src={gameOrder} alt="Order TLOUS II" className="order-game-cover" />
+                    <img src={gameOrderDigital} alt="Order Digital TLOUS II" className="order-game-cover digital" />
+                  </>
+                ) : (
+                  <>
+                    <Button
+                      // href={preOrderLink}
+                      // target="_blank"
+                      // rel="noopener noreferrer"
+                      className="btn btn-primary"
+                      onClick={() => setModalShow(true)}
+                    >
+                      ¡PRE-ORDENAR!
+                    </Button>
+
+                    <img src={gamePreOrder} alt="Pre Order TLOUS II" className="game-cover" />
+                  </>
+                )}
+                
                 <img src={psLogo} alt="Play Station" className="ps-logo" />
               </div>
             )}
@@ -179,7 +239,7 @@ const App = () => {
 
           <Col xs={12} md={{span: 4, offset:3}} lg={{span: 4, offset:3}} xl={{span: 4, offset:4}} className="right-container mt-5 mt-md-0">
             {/* Header-Section Container */}
-            {step === 3 && (
+            {(step === 3 && !currentlyStreaming && !afterStreamingIsLive) && (
               <Row className="watch-container text-right">
               <Col xs={12}>
                 <p className="bold-text mb-0 header">FALTAN</p>
@@ -187,6 +247,7 @@ const App = () => {
               <Col xs={12} className="my-1 nums-container">
                 <Row className="mr-0">
                   <CountDownComponent />
+
                   <Col xs={{span: 2, offset:6}} className="num px-0 first">
                     <p className="mb-0">&nbsp;</p>
                     <p className="mb-0 bottom-text pt-1">HORAS</p>
@@ -210,16 +271,16 @@ const App = () => {
             )}
 
             <Row>
-              {(!!streaminIsLive && step === 0) && (
+              {(!!beforeStreamingIsLive && step === 0) && (
                 <>
                   <p className="bold-text">BIENVENIDO.</p>
                   <p className="bold-text border-bottom-yellow">PARA ENTRAR A ESTE EVENTO ES NECESARIO SER MAYOR DE EDAD.</p>
                 </>
               )}
-              {(step === 2 || step === 3) && (
+              {((step === 2 || step === 3) && !currentlyStreaming && !afterStreamingIsLive) && (
                 <p className="bold-text border-bottom-yellow">{msgText}</p>
               )}
-              {(!streaminIsLive && step !== 2) && (
+              {(!beforeStreamingIsLive && step !== 2) && (
                 <p className="bold-text border-bottom-yellow">¡NO TE PIERDAS EL EVENTO DE ESTRENO!</p>
               )}
 
@@ -228,7 +289,7 @@ const App = () => {
             
             {/* Body-Section Container */}
             <Row className={step !== 1 && ("my-5")}>
-              {(!!streaminIsLive && step === 0) && (
+              {(!!beforeStreamingIsLive && step === 0) && (
                 <>
                   <p className="bold-text yellow-text checkbox-label">SOY MAYOR DE EDAD</p>
                   <label className="checkbox-container">
@@ -238,7 +299,7 @@ const App = () => {
                 </>
               )}
 
-              {(step === 0 && !streaminIsLive) && (
+              {(step === 0 && !beforeStreamingIsLive) && (
                 <>
                   <Fade in={open}>
                     <p className="custom-alert">Hay un error, por favor verifica los campos.</p>
@@ -303,7 +364,7 @@ const App = () => {
               )}
             </Row>
 
-            {(!!streaminIsLive && step === 0) && (
+            {(!!beforeStreamingIsLive && step === 0) && (
               <>
                 <Row>
                   <p>Al enviar esta forma manifiesta su conformidad con la <a href={termsLink} target="_blank" rel="noopener noreferrer">política de confidencialidad.</a></p>
@@ -317,10 +378,10 @@ const App = () => {
 
             {/* Bottom-Section Container */}
             <Row className="mt-5">
-              <Col xs={6} className="pl-sm-0 my-auto">
+              <Col xs={6} lg={{span:4, offset:4}} className="pl-sm-0 my-auto text-right">
                 <img src={naughtyDogLogo} alt="Naughty Dog Logo" className="w-100" />
               </Col>
-              <Col xs={6} className="pr-sm-0 my-auto">
+              <Col xs={6} lg={4} className="pr-sm-0 my-auto text-right">
                 <img src={parentalControlLogo} alt="Rated Mature 17+" className="w-100" />
               </Col>
             </Row>
