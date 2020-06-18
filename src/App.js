@@ -38,7 +38,7 @@ import Firebase from './firebaseConfig';
 
 // Google Analytics
 import ReactGA from "react-ga";
-import googleAnalyticsConfig from "./googleAnalyticsConfig";
+ReactGA.initialize("UA-169941119-1");
 
 // Show/Hide "Age Comprobation"
 let beforeStreamingIsLive;
@@ -164,7 +164,7 @@ const App = () => {
       sendEmail(userEmail);
 
       // Calling GA event on click
-      googleAnalyticsConfig.EventGA(
+      EventGA(
         "REGISTER",
         "User clicks on register button. This Saves name/email into Firebase.",
         "REGISTER-FORM",
@@ -192,20 +192,31 @@ const App = () => {
   }
 
   // Count Collection Documents
-  db.collection("users").get().then(function(querySnapshot) {
-    console.log("querySnapshot.size");
-    console.log(querySnapshot.size);
-  });
+  // db.collection("users").get().then(function(querySnapshot) {
+  //   console.log("querySnapshot.size");
+  //   console.log(querySnapshot.size);
+  // });
 
   
   // Analize active-users in real-time
   ReactGA.pageview(window.location.pathname + window.location.search);
+  /*
+	* Analize clicks to buttons
+	*/
+	// eslint-disable-next-line
+	const EventGA = (category, action, label) => {
+    ReactGA.event({
+    category: category,
+    action: action,
+    label: label
+    });
+  };
 
   // Calling GA event on click for "PRE-ORDER" & "ORDER" buttons
   const buyGameHandler = () => {
     setModalShow(true);
 
-    googleAnalyticsConfig.EventGA(
+    EventGA(
       "PRE-ORDER or ORDER GAME BUTTONS",
       "User clicks on pre-order/order button. This shows up the modal so they can select Argentina/Chile links.",
       "PRE-ORDER or ORDER GAME BUTTONS",
@@ -385,7 +396,10 @@ const App = () => {
                   <iframe
                     title="trailer-video"
                     className="embed-responsive-item"
+                    // Trailer
                     src="https://www.youtube-nocookie.com/embed/ek-iAALNeRo"
+                    // Live
+                    // src="https://player-cdn.logicideas.media/embed/LI38a21fa9/"
                   ></iframe>
                 </div>
               )}
