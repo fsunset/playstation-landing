@@ -40,9 +40,9 @@ import Firebase from './firebaseConfig';
 let beforeStreamingIsLive;
 let currentlyStreaming;
 let afterStreamingIsLive;
-let streamingEnd = moment("2020-06-18T22:00:00");
-let streamingDate = moment("2020-06-18T21:00:00");
-let eventDate = moment("2020-06-18T20:00:00");
+let streamingEnd = moment("2020-06-17T22:00:00");
+let streamingDate = moment("2020-06-16T21:00:00");
+let eventDate = moment("2020-06-15T20:00:00");
 let now = moment();
 
 if (now < eventDate) {
