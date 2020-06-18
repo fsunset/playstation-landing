@@ -38,6 +38,7 @@ import Firebase from './firebaseConfig';
 
 // Google Analytics
 import ReactGA from "react-ga";
+import googleAnalyticsConfig from "./googleAnalyticsConfig";
 
 // Show/Hide "Age Comprobation"
 let beforeStreamingIsLive;
@@ -161,6 +162,13 @@ const App = () => {
       });
 
       sendEmail(userEmail);
+
+      // Calling GA event on click
+      googleAnalyticsConfig.EventGA(
+        "REGISTER",
+        "User clicks on register button. This Saves name/email into Firebase.",
+        "REGISTER-FORM",
+      );
     } else {
       setOpen(true);
     }
@@ -189,9 +197,20 @@ const App = () => {
     console.log(querySnapshot.size);
   });
 
-  // Init Google Analytics
-  ReactGA.initialize("UA-169941119-1");
+  
+  // Analize active-users in real-time
   ReactGA.pageview(window.location.pathname + window.location.search);
+
+  // Calling GA event on click for "PRE-ORDER" & "ORDER" buttons
+  const buyGameHandler = () => {
+    setModalShow(true);
+
+    googleAnalyticsConfig.EventGA(
+      "PRE-ORDER or ORDER GAME BUTTONS",
+      "User clicks on pre-order/order button. This shows up the modal so they can select Argentina/Chile links.",
+      "PRE-ORDER or ORDER GAME BUTTONS",
+    );
+  }
 
   return (
     <div className="App main-container">
@@ -231,7 +250,7 @@ const App = () => {
                       // target="_blank"
                       // rel="noopener noreferrer"
                       className="buy-game-disc"
-                      onClick={() => setModalShow(true)}
+                      onClick={() => buyGameHandler()}
                     >
                       COMPRAR DISCO
                     </Button>
@@ -240,7 +259,7 @@ const App = () => {
                       // target="_blank"
                       // rel="noopener noreferrer"
                       className="buy-game-dig"
-                      onClick={() => setModalShow(true)}
+                      onClick={() => buyGameHandler()}
                     >
                       COMPRAR JUEGO DIGITAL
                     </Button>
@@ -255,7 +274,7 @@ const App = () => {
                       // href={preOrderLink}
                       // target="_blank"
                       // rel="noopener noreferrer"
-                      onClick={() => setModalShow(true)}
+                      onClick={() => buyGameHandler()}
                     >
                       ¡PRE-ORDENAR!
                     </Button>

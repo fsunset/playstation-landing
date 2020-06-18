@@ -1,4 +1,5 @@
 import React from 'react';
+import ReactGA from "react-ga";
 
 import {Button, Modal, Row, Col} from 'react-bootstrap';
 
@@ -20,6 +21,7 @@ const ModalComponent = ({show, onHide}) => {
 
 					<Row className="text-center pt-3">
 						<Col xs={{span:4, offset:2}}>
+						<ReactGA.OutboundLink eventLabel="OrderGameArg" to={preOrderLinkArg} target="_blank">
 							<a
 								href={preOrderLinkArg}
 								target="_blank"
@@ -27,15 +29,19 @@ const ModalComponent = ({show, onHide}) => {
 							>
 								<img src={argFlag} alt="Argentina" />
 							</a>
+						</ReactGA.OutboundLink>
+													
 						</Col>
 						<Col xs={4}>
-							<a
-								href={preOrderLinkChl}
-								target="_blank"
-								rel="noopener noreferrer"
-							>
-								<img src={chlFlag} alt="Chile" />
-							</a>
+							<ReactGA.OutboundLink eventLabel="OrderGameChl" to={preOrderLinkChl} target="_blank">
+								<a
+									href={preOrderLinkChl}
+									target="_blank"
+									rel="noopener noreferrer"
+								>
+									<img src={chlFlag} alt="Chile" />
+								</a>
+							</ReactGA.OutboundLink>
 						</Col>
 					</Row>
 				</Modal.Body>
