@@ -8,7 +8,7 @@
 
 body {
 	background-color: $black !important;
-	// background-image: url(../img/bg.jpg);
+	background-image: url(../img/bg.jpg);
 	background-size: cover;
 	background-position: top center;
 	background-repeat: no-repeat;
@@ -26,8 +26,9 @@ body {
 		min-height: 100vh;
 		overflow: hidden;
 
-		// for video BG
-		.video-bg {
+		// For img BG on mobiles only && For video BG on 769px plus
+		.video-bg,
+		.bg-mobile-img {
 			position: fixed;
 			right: 0;
 			bottom: 0;
@@ -39,6 +40,12 @@ body {
 			transition-timing-function: linear;
 			z-index: -1;
 		}
+
+		.bg-mobile-img {
+			width: 100vw;
+			top: 0;
+		}
+
 
 		header {
 			position: absolute;

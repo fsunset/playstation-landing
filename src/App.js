@@ -8,6 +8,8 @@ import bg from './img/bg.jpg';
 // import bg1 from './img/bg1.jpg';
 import bg2 from './img/bg2.jpg';
 import bg3 from './img/bg3.jpg';
+import bgMobilePortrait from './img/bgMobilePortrait.jpg';
+import bgMobilePortrait1 from './img/bgMobilePortrait1.jpg';
 import psLogo from './img/psLogo.png';
 import ps4Logo from './img/ps4Logo.png';
 import tlousLogo from './img/tlousLogo.png';
@@ -140,6 +142,9 @@ const App = () => {
 
   const registerHandler = () => {
     if (userName.length > 0 && emailRegEx.test(userEmail)) {
+      console.log("aaaas");
+      document.body.style.backgroundImage = `url(${bg3})`;
+
       setOpen(false);
       setStep(2);
       setMsgText("¡REGISTRO COMPLETADO!");
@@ -152,12 +157,26 @@ const App = () => {
       });
 
       sendEmail(userEmail);
-
-      // Set new BG for body
-      document.body.style.backgroundImage = `url(${bg3})`;
     } else {
       setOpen(true);
     }
+  }
+
+  // Show/Hide videoBG, depending viewport-width
+  const viewportWidth = window.innerWidth;
+  const widerViewPort = viewportWidth > window.innerHeight;
+  if (viewportWidth < 1024) {
+    if (!!widerViewPort) {
+      document.body.style.backgroundImage = `url(${bg})`;
+    } else {
+      document.body.style.backgroundImage = `url(${bgMobilePortrait})`;
+    }
+  }
+
+  if (step === 2 && !widerViewPort) {
+    document.body.style.backgroundImage = `url(${bgMobilePortrait1})`;
+  } else if (step === 2 && !!widerViewPort) {
+    document.body.style.backgroundImage = `url(${bg3})`;
   }
 
   return (
@@ -167,8 +186,8 @@ const App = () => {
         onHide={() => setModalShow(false)}
       />
 
-      {/* Setting video BG for Step 1 */}
-      {(step === 0 && !beforeStreamingIsLive) && (
+      {/* Setting video BG for Step 1. Only on 769px plus */}
+      {(step === 0 && !beforeStreamingIsLive && viewportWidth >= 1024) && (
         <Fade in={true}>
           <VideoComponent />
         </Fade>
@@ -239,7 +258,7 @@ const App = () => {
 
           <Col xs={12} md={{span: 4, offset:3}} lg={{span: 4, offset:3}} xl={{span: 4, offset:4}} className="right-container mt-5 mt-md-0">
             {/* Header-Section Container */}
-            {(step === 3 && !currentlyStreaming && !afterStreamingIsLive) && (
+            {(step === 3 && (!!currentlyStreaming || !!afterStreamingIsLive)) && (
               <Row className="watch-container text-right">
               <Col xs={12}>
                 <p className="bold-text mb-0 header">FALTAN</p>
@@ -274,10 +293,10 @@ const App = () => {
               {(!!beforeStreamingIsLive && step === 0) && (
                 <>
                   <p className="bold-text">BIENVENIDO.</p>
-                  <p className="bold-text border-bottom-yellow">PARA ENTRAR A ESTE EVENTO ES NECESARIO SER MAYOR DE EDAD.</p>
+                  <p className="bold-text border-bottom-yellow">PARA ENTRAR A ESTE EVENTO ES NECESARIO SER MAYOR DE 17 AÑOS.</p>
                 </>
               )}
-              {((step === 2 || step === 3) && !currentlyStreaming && !afterStreamingIsLive) && (
+              {((step === 2 || step === 3) && (!!currentlyStreaming || !afterStreamingIsLive)) && (
                 <p className="bold-text border-bottom-yellow">{msgText}</p>
               )}
               {(!beforeStreamingIsLive && step !== 2) && (
@@ -291,7 +310,7 @@ const App = () => {
             <Row className={step !== 1 && ("my-5")}>
               {(!!beforeStreamingIsLive && step === 0) && (
                 <>
-                  <p className="bold-text yellow-text checkbox-label">SOY MAYOR DE EDAD</p>
+                  <p className="bold-text yellow-text checkbox-label">SOY MAYOR DE 17 AÑOS</p>
                   <label className="checkbox-container">
                     <input type="checkbox" onClick={() => onClickCheckBoxHandler()} />
                     <span className="checkmark"></span>
