@@ -108,7 +108,10 @@ body {
 
 					.buy-game-disc {
 						@media (min-width: 768px) {
-							font-size: .84em;
+							font-size: 0.74em;
+						}
+						@media (min-width: 1299px) {
+							font-size: 0.84em;
 						}
 					}
 
@@ -117,11 +120,14 @@ body {
 						right: -120%;
 						width: 110%;
 						@media (min-width: 768px) {
-							font-size: .84em;
+							font-size: 0.74em;
 							margin-top: -1px;
 						}
 						@media (min-width: 1200px) {
 							width: 100%;
+						}
+						@media (min-width: 1299px) {
+							font-size: 0.84em;
 						}
 					}
 
