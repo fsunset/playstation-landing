@@ -16,7 +16,7 @@ const ModalComponent = ({show, onHide}) => {
         </Modal.Header> */}
         
 				<Modal.Body>
-					<p className="bold-text border-bottom-yellow">Pre-ordenar The Last Of Us II - La Espera Final</p>
+					<p className="bold-text border-bottom-yellow text-center">Pre-ordenar<br />The Last Of Us Part II - La Espera Final</p>
 
 					<Row className="text-center pt-3">
 						<Col xs={{span:4, offset:2}}>
