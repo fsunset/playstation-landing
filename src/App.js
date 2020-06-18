@@ -36,13 +36,16 @@ import {
 
 import Firebase from './firebaseConfig';
 
+// Google Analytics
+import ReactGA from "react-ga";
+
 // Show/Hide "Age Comprobation"
 let beforeStreamingIsLive;
 let currentlyStreaming;
 let afterStreamingIsLive;
 let streamingEnd = moment("2020-06-18T22:00:00");
-let streamingDate = moment("2020-06-16T21:00:00");
-let eventDate = moment("2020-06-15T20:00:00");
+let streamingDate = moment("2020-06-18T21:00:00");
+let eventDate = moment("2020-06-18T20:00:00");
 let now = moment();
 
 if (now < eventDate) {
@@ -79,6 +82,7 @@ if (now === streamingEnd || now > streamingEnd) {
 
 const App = () => {
   // Basic constants
+  // eslint-disable-next-line
   const emailRegEx = /^[a-zA-Z0-9][-\._a-zA-Z0-9]*@(?:[a-zA-Z0-9]+\.)+[A-Za-z]+$/;
   const termsLink = "https://www.playstation.com/es-ar/legal/terms-of-use/";
   const msgSocialShare = "¡Hola! Revisa este enlace y no te pierdas este gran evento el próximo 18 de junio.";
@@ -179,10 +183,15 @@ const App = () => {
     document.body.style.backgroundImage = `url(${bg3})`;
   }
 
-  db.collection("users").get().then(function(querySnapshot) {      
+  // Count Collection Documents
+  db.collection("users").get().then(function(querySnapshot) {
     console.log("querySnapshot.size");
     console.log(querySnapshot.size);
   });
+
+  // Init Google Analytics
+  ReactGA.initialize("UA-169941119-1");
+  ReactGA.pageview(window.location.pathname + window.location.search);
 
   return (
     <div className="App main-container">
