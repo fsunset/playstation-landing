@@ -40,9 +40,9 @@ import Firebase from './firebaseConfig';
 let beforeStreamingIsLive;
 let currentlyStreaming;
 let afterStreamingIsLive;
-let streamingEnd = moment("2020-06-18T22:00:00");
-let streamingDate = moment("2020-06-18T21:00:00");
-let eventDate = moment("2020-06-18T20:00:00");
+let streamingEnd = moment("2020-06-17T22:00:00");
+let streamingDate = moment("2020-06-16T21:00:00");
+let eventDate = moment("2020-06-15T20:00:00");
 let now = moment();
 
 if (now < eventDate) {
@@ -216,7 +216,7 @@ const App = () => {
                       // href={preOrderLink}
                       // target="_blank"
                       // rel="noopener noreferrer"
-                      className="btn btn-primary"
+                      className="buy-game-disc"
                       onClick={() => setModalShow(true)}
                     >
                       COMPRAR DISCO
@@ -225,7 +225,7 @@ const App = () => {
                       // href={preOrderLink}
                       // target="_blank"
                       // rel="noopener noreferrer"
-                      className="btn btn-primary buy-game-dig"
+                      className="buy-game-dig"
                       onClick={() => setModalShow(true)}
                     >
                       COMPRAR JUEGO DIGITAL
@@ -241,7 +241,6 @@ const App = () => {
                       // href={preOrderLink}
                       // target="_blank"
                       // rel="noopener noreferrer"
-                      className="btn btn-primary"
                       onClick={() => setModalShow(true)}
                     >
                       ¡PRE-ORDENAR!
@@ -258,7 +257,7 @@ const App = () => {
 
           <Col xs={12} md={{span: 4, offset:3}} lg={{span: 4, offset:3}} xl={{span: 4, offset:4}} className="right-container mt-5 mt-md-0">
             {/* Header-Section Container */}
-            {(step === 3 && (!!currentlyStreaming || !!afterStreamingIsLive)) && (
+            {(step === 3 && (!!currentlyStreaming && !afterStreamingIsLive)) && (
               <Row className="watch-container text-right">
               <Col xs={12}>
                 <p className="bold-text mb-0 header">FALTAN</p>
@@ -296,7 +295,7 @@ const App = () => {
                   <p className="bold-text border-bottom-yellow">PARA ENTRAR A ESTE EVENTO ES NECESARIO SER MAYOR DE 17 AÑOS.</p>
                 </>
               )}
-              {((step === 2 || step === 3) && (!!currentlyStreaming || !afterStreamingIsLive)) && (
+              {((step === 2 || step === 3) && (!!currentlyStreaming && !afterStreamingIsLive)) && (
                 <p className="bold-text border-bottom-yellow">{msgText}</p>
               )}
               {(!beforeStreamingIsLive && step !== 2) && (

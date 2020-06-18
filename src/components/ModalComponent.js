@@ -18,7 +18,7 @@ const ModalComponent = ({show, onHide}) => {
 				<Modal.Body>
 					<p className="bold-text border-bottom-yellow">Pre-ordenar The Last Of Us II - La Espera Final</p>
 
-					<Row className="text-center">
+					<Row className="text-center pt-3">
 						<Col xs={{span:4, offset:2}}>
 							<a
 								href={preOrderLinkArg}

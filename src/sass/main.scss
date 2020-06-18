@@ -104,14 +104,24 @@ body {
 						@media (min-width: 1299px) {
 							width: 80%;
 						}
+					}
 
-						&.buy-game-dig {
-							position: absolute;
-							right: -90%;
-							width: 110%;
-							@media (min-width: 1200px) {
-								width: 100%;
-							}
+					.buy-game-disc {
+						@media (min-width: 768px) {
+							font-size: .84em;
+						}
+					}
+
+					.buy-game-dig {
+						position: absolute;
+						right: -120%;
+						width: 110%;
+						@media (min-width: 768px) {
+							font-size: .84em;
+							margin-top: -1px;
+						}
+						@media (min-width: 1200px) {
+							width: 100%;
 						}
 					}
 
@@ -138,9 +148,12 @@ body {
 
 					.order-game-cover {
 						position: absolute;
-						right: -55%;
+						right: -70%;
 						bottom: 125%;
 						height: 170%;
+						@media (min-width: 768px) {
+							height: 270%;
+						}
 						@media (min-width: 1299px) {
 							height: 330%;
 							right: -52%;
@@ -153,9 +166,12 @@ body {
 						width: auto;
 
 						&.digital {
-							right: -90%;
+							right: -108%;
 							height: 120%;
 							bottom: 135%;
+							@media (min-width: 768px) {
+								height: 220%;
+							}
 							@media (min-width: 1299px) {
 								height: 260%;
 								bottom: 200%;
@@ -169,9 +185,20 @@ body {
 					.game-title {
 						border-bottom: 2px solid $white !important;
 						position: absolute;
-						top: -383%;
-						right: -50%;
+						top: -220%;
+						right: -63%;
 						font-size: 0.45em;
+						@media (min-width: 768px) {
+							top: -320%;
+							right: -66%;
+						}
+						@media (min-width: 811px) {
+							top: -320%;
+							right: -68.5%;
+						}
+						@media (min-width: 1024px) {
+							top: -330%;
+						}
 						@media (min-width: 1399px) {
 							top: -575%;
 							right: -44%;
