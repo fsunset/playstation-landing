@@ -92,6 +92,7 @@ const App = () => {
   const db = Firebase.firestore();
 
   // Hooks
+  const [buyDigGameBtn, setbuyDigGameBtn] = useState(false);
   const [modalShow, setModalShow] = useState(false);
   const [open, setOpen] = useState(false);
   const [step, setStep] = useState(0);
@@ -147,7 +148,6 @@ const App = () => {
 
   const registerHandler = () => {
     if (userName.length > 0 && emailRegEx.test(userEmail)) {
-      console.log("aaaas");
       document.body.style.backgroundImage = `url(${bg3})`;
 
       setOpen(false);
@@ -191,10 +191,24 @@ const App = () => {
     document.body.style.backgroundImage = `url(${bg3})`;
   }
 
-  // Count Collection Documents
+
+  /*
+  * ***** Count Collection Documents
+  */
+  // let vcount = 0;
+  // var BreakException = {};
   // db.collection("users").get().then(function(querySnapshot) {
   //   console.log("querySnapshot.size");
-  //   console.log(querySnapshot.size);
+  //   const totalDocs = querySnapshot.size;
+  //   console.log(totalDocs);
+
+  //   querySnapshot.forEach((doc) => {
+  //     console.log("name: "+doc.data().name, " |+| email: "+doc.data().email);
+  //     if (vcount === totalDocs) {
+  //       throw BreakException;
+  //     }
+  //     vcount++;
+  //   });
   // });
 
   
@@ -213,7 +227,8 @@ const App = () => {
   };
 
   // Calling GA event on click for "PRE-ORDER" & "ORDER" buttons
-  const buyGameHandler = () => {
+  const buyGameHandler = (isDigGameOrder = false) => {
+    setbuyDigGameBtn(isDigGameOrder);
     setModalShow(true);
 
     EventGA(
@@ -226,6 +241,8 @@ const App = () => {
   return (
     <div className="App main-container">
       <ModalComponent
+        buyDigGameBtn={buyDigGameBtn}
+        afterStreamingIsLive={afterStreamingIsLive}
         show={modalShow}
         onHide={() => setModalShow(false)}
       />
@@ -261,7 +278,7 @@ const App = () => {
                       // target="_blank"
                       // rel="noopener noreferrer"
                       className="buy-game-disc"
-                      onClick={() => buyGameHandler()}
+                      onClick={() => buyGameHandler(false)}
                     >
                       COMPRAR DISCO
                     </Button>
@@ -270,7 +287,7 @@ const App = () => {
                       // target="_blank"
                       // rel="noopener noreferrer"
                       className="buy-game-dig"
-                      onClick={() => buyGameHandler()}
+                      onClick={() => buyGameHandler(true)}
                     >
                       COMPRAR JUEGO DIGITAL
                     </Button>
@@ -285,7 +302,7 @@ const App = () => {
                       // href={preOrderLink}
                       // target="_blank"
                       // rel="noopener noreferrer"
-                      onClick={() => buyGameHandler()}
+                      onClick={() => buyGameHandler(false)}
                     >
                       ¡PRE-ORDENAR!
                     </Button>
@@ -299,7 +316,7 @@ const App = () => {
             )}
           </Col>
 
-          <Col xs={12} md={{span: 4, offset:3}} lg={{span: 4, offset:3}} xl={{span: 4, offset:4}} className="right-container mt-5 mt-md-0">
+          <Col xs={12} md={{span: 4, offset:3}} lg={{span: 4, offset:3}} xl={{span: 5, offset:3}} className="right-container mt-5 mt-md-0">
             {/* Header-Section Container */}
             {(step === 3 && (!!currentlyStreaming && !afterStreamingIsLive)) && (
               <Row className="watch-container text-right">
@@ -327,7 +344,7 @@ const App = () => {
                 </Row>
               </Col>
               <Col xs={12}>
-                <p className="bold-text mb-0">PARA EL ESTRENO</p>
+                <p className="bold-text mb-0">PARA JUGAR</p>
               </Col>
             </Row>
             )}
@@ -399,7 +416,7 @@ const App = () => {
                     // Trailer
                     src="https://www.youtube-nocookie.com/embed/ek-iAALNeRo"
                     // Live
-                    // src="https://player-cdn.logicideas.media/embed/LI38a21fa9/"
+                    // src="https://player-cdn.logicideas.media/embed/LI38a21fa9"
                   ></iframe>
                 </div>
               )}

@@ -119,15 +119,21 @@ body {
 						position: absolute;
 						right: -120%;
 						width: 110%;
+						@media (min-width: 414px) and (max-width: 665px) {
+							font-size: .82em;
+						}
+
 						@media (min-width: 768px) {
 							font-size: 0.74em;
 							margin-top: -1px;
+							right: -100%;
 						}
 						@media (min-width: 1200px) {
 							width: 100%;
 						}
 						@media (min-width: 1299px) {
 							font-size: 0.84em;
+							right: -120%;
 						}
 					}
 
@@ -159,6 +165,7 @@ body {
 						height: 170%;
 						@media (min-width: 768px) {
 							height: 270%;
+							right: -50%;
 						}
 						@media (min-width: 1299px) {
 							height: 330%;
@@ -177,6 +184,7 @@ body {
 							bottom: 135%;
 							@media (min-width: 768px) {
 								height: 220%;
+								right: -80%;
 							}
 							@media (min-width: 1299px) {
 								height: 260%;
@@ -184,6 +192,7 @@ body {
 							}
 							@media (min-width: 1399px) {
 								height: 330%;
+								right: -110%;
 							}
 						}
 					}
@@ -196,11 +205,11 @@ body {
 						font-size: 0.45em;
 						@media (min-width: 768px) {
 							top: -320%;
-							right: -66%;
+							right: -49%;
 						}
 						@media (min-width: 811px) {
 							top: -320%;
-							right: -68.5%;
+							right: -49.5%;
 						}
 						@media (min-width: 1024px) {
 							top: -330%;
@@ -283,7 +292,7 @@ body {
 								&:last-child {
 									margin-left: 30px;
 									@media (min-width: 576px) {
-										margin-left: 40px;
+										margin-left: 28px;
 									}
 									@media (min-width: 768px) {
 										margin-left: 13px;
@@ -292,7 +301,7 @@ body {
 										margin-left: 27px;
 									}
 									@media (min-width: 1200px) {
-										margin-left: 40px;
+										margin-left: 31px;
 									}
 								}
 							}

@@ -6,9 +6,22 @@ import {Button, Modal, Row, Col} from 'react-bootstrap';
 import argFlag from '../img/arg.png';
 import chlFlag from '../img/chl.png';
 
-const ModalComponent = ({show, onHide}) => {
+const ModalComponent = ({buyDigGameBtn, afterStreamingIsLive, show, onHide}) => {
+	let linkArg, linkChl;
 	const preOrderLinkArg = "https://www.playstation.com/es-ar/games/the-last-of-us-part-ii-ps4/preorder/";
 	const preOrderLinkChl = "https://www.playstation.com/es-cl/games/the-last-of-us-part-ii-ps4/preorder/";
+	const orderDiscLinkArg = "https://www.playstation.com/es-ar/games/the-last-of-us-part-ii-ps4/selecciona-un-comercio/";
+	const orderDiscLinkChl = "https://www.playstation.com/es-cl/games/the-last-of-us-part-ii-ps4/selecciona-un-comercio/";
+	const orderDigLinkArg = "https://store.playstation.com/es-ar/product/UP9000-CUSA07820_00-THELASTOFUS2STND";
+	const orderDigLinkChl = "https://store.playstation.com/es-cl/product/UP9000-CUSA07820_00-THELASTOFUS2STND";
+
+	if (!!afterStreamingIsLive) {
+		linkArg = !!buyDigGameBtn ? orderDigLinkArg : orderDiscLinkArg;
+		linkChl = !!buyDigGameBtn ? orderDigLinkChl : orderDiscLinkChl;
+	} else {
+		linkArg = preOrderLinkArg;
+		linkChl = preOrderLinkChl;
+	}
 
 	return (
 		<Modal show={show} onHide={onHide}>
@@ -21,26 +34,14 @@ const ModalComponent = ({show, onHide}) => {
 
 					<Row className="text-center pt-3">
 						<Col xs={{span:4, offset:2}}>
-						<ReactGA.OutboundLink eventLabel="OrderGameArg" to={preOrderLinkArg} target="_blank">
-							<a
-								href={preOrderLinkArg}
-								target="_blank"
-								rel="noopener noreferrer"
-							>
-								<img src={argFlag} alt="Argentina" />
-							</a>
+						<ReactGA.OutboundLink eventLabel="OrderGameArg" to={linkArg} target="_blank">
+							<img src={argFlag} alt="Argentina" />
 						</ReactGA.OutboundLink>
 													
 						</Col>
 						<Col xs={4}>
-							<ReactGA.OutboundLink eventLabel="OrderGameChl" to={preOrderLinkChl} target="_blank">
-								<a
-									href={preOrderLinkChl}
-									target="_blank"
-									rel="noopener noreferrer"
-								>
-									<img src={chlFlag} alt="Chile" />
-								</a>
+							<ReactGA.OutboundLink eventLabel="OrderGameChl" to={linkChl} target="_blank">
+								<img src={chlFlag} alt="Chile" />
 							</ReactGA.OutboundLink>
 						</Col>
 					</Row>
