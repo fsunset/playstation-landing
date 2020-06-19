@@ -420,9 +420,9 @@ const App = () => {
                     title="trailer-video"
                     className="embed-responsive-item"
                     // Trailer
-                    src="https://www.youtube-nocookie.com/embed/ek-iAALNeRo"
+                    // src="https://www.youtube-nocookie.com/embed/ek-iAALNeRo"
                     // Live
-                    // src="https://www.youtube.com/embed/t_zSXIO4BZI"
+                    src="https://www.youtube.com/embed/t_zSXIO4BZI"
                   ></iframe>
                 </div>
               )}
