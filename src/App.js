@@ -44,9 +44,9 @@ ReactGA.initialize("UA-169941119-1");
 let beforeStreamingIsLive;
 let currentlyStreaming;
 let afterStreamingIsLive;
-let streamingEnd = moment("2020-06-18T22:00:00");
-let streamingDate = moment("2020-06-18T21:00:00");
-let eventDate = moment("2020-06-18T20:00:00");
+let streamingEnd = moment.utc("2020-06-19T03:00:00"); // COT 22:00
+let streamingDate = moment.utc("2020-06-19T02:00:00"); // COT 21:00
+let eventDate = moment.utc("2020-06-19T01:00:00"); // COT 20:00
 let now = moment();
 
 if (now < eventDate) {
@@ -411,17 +411,18 @@ const App = () => {
                 <div className="trailer-video-container embed-responsive embed-responsive-16by9">
                   <p className="w-100 my-5 text-center">Cargando...</p>
                   <iframe
+                    allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
                     allowfullscreen="allowfullscreen"
-                    mozallowfullscreen="mozallowfullscreen" 
-                    msallowfullscreen="msallowfullscreen" 
-                    oallowfullscreen="oallowfullscreen" 
+                    mozallowfullscreen="mozallowfullscreen"
+                    msallowfullscreen="msallowfullscreen"
+                    oallowfullscreen="oallowfullscreen"
                     webkitallowfullscreen="webkitallowfullscreen"
                     title="trailer-video"
                     className="embed-responsive-item"
                     // Trailer
                     src="https://www.youtube-nocookie.com/embed/ek-iAALNeRo"
                     // Live
-                    // src="https://player-cdn.logicideas.media/embed/LI38a21fa9"
+                    // src="https://www.youtube.com/embed/t_zSXIO4BZI"
                   ></iframe>
                 </div>
               )}
