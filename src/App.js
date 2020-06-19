@@ -202,13 +202,13 @@ const App = () => {
   //   const totalDocs = querySnapshot.size;
   //   console.log(totalDocs);
 
-  //   querySnapshot.forEach((doc) => {
-  //     console.log("name: "+doc.data().name, " |+| email: "+doc.data().email);
-  //     if (vcount === totalDocs) {
-  //       throw BreakException;
-  //     }
-  //     vcount++;
-  //   });
+  //   // querySnapshot.forEach((doc) => {
+  //   //   console.log("name: "+doc.data().name, " |+| email: "+doc.data().email);
+  //   //   if (vcount === totalDocs) {
+  //   //     throw BreakException;
+  //   //   }
+  //   //   vcount++;
+  //   // });
   // });
 
   
@@ -411,6 +411,11 @@ const App = () => {
                 <div className="trailer-video-container embed-responsive embed-responsive-16by9">
                   <p className="w-100 my-5 text-center">Cargando...</p>
                   <iframe
+                    allowfullscreen="allowfullscreen"
+                    mozallowfullscreen="mozallowfullscreen" 
+                    msallowfullscreen="msallowfullscreen" 
+                    oallowfullscreen="oallowfullscreen" 
+                    webkitallowfullscreen="webkitallowfullscreen"
                     title="trailer-video"
                     className="embed-responsive-item"
                     // Trailer
