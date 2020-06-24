@@ -13,15 +13,16 @@ import bgMobilePortrait1 from './img/bgMobilePortrait1.jpg';
 import psLogo from './img/psLogo.png';
 import ps4Logo from './img/ps4Logo.png';
 import tlousLogo from './img/tlousLogo.png';
-import spotifyImg from './img/spotify.png'
-import whatsAppImg from './img/whatsApp.png'
-import facebookImg from './img/facebook.png'
-import twitterImg from './img/twitter.png'
+import imgPodcast from './img/imgPodcast.png';
+import imgPlaylist from './img/imgPlaylist.png';
+import whatsAppImg from './img/whatsApp.png';
+import facebookImg from './img/facebook.png';
+import twitterImg from './img/twitter.png';
 import naughtyDogLogo from './img/naughtyDogLogo.png';
 import parentalControlLogo from './img/parentalControlLogo.png';
-import gamePreOrder from './img/gamePreOrder.png'
-import gameOrder from './img/gameOrder.png'
-import gameOrderDigital from './img/gameOrderDigital.png'
+import gamePreOrder from './img/gamePreOrder.png';
+import gameOrder from './img/gameOrder.png';
+import gameOrderDigital from './img/gameOrderDigital.png';
 
 import sendEmail from './sendEmail';
 import ModalComponent from './components/ModalComponent'
@@ -410,7 +411,18 @@ const App = () => {
               {(step === 2 || step === 3) && (
                 <div className="trailer-video-container embed-responsive embed-responsive-16by9">
                   <p className="w-100 my-5 text-center">Cargando...</p>
-                  <iframe
+                  
+                  <video
+                    poster="https://i.imgur.com/RpkkXdP.png"
+                    width="100%"
+                    controls controlsList="nodownload"
+                    disablePictureInPicture
+                  >
+                    <source src="https://digitalsnap.co/streamingTLOU.mp4" type="video/mp4" />
+                    Your browser does not support HTML video.
+                  </video>
+
+                  {/* <iframe
                     allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
                     allowfullscreen="allowfullscreen"
                     mozallowfullscreen="mozallowfullscreen"
@@ -423,18 +435,29 @@ const App = () => {
                     // src="https://www.youtube-nocookie.com/embed/ek-iAALNeRo"
                     // Live
                     src="https://www.youtube.com/embed/t_zSXIO4BZI"
-                  ></iframe>
+                  ></iframe> */}
                 </div>
               )}
 
               {step === 3 && (
                 <Row className="share-container">
-                  <Col xs={6}>
-                    <a href="https://open.spotify.com/playlist/2jrFMHRaVdaoFzhaMvw6gH" target="_blank" rel="noopener noreferrer">
-                      <img src={spotifyImg} alt="Spotify" className="w-100 my-3" />
+                  <Col xs={5} sm={3}>
+                    <a
+                      href="https://open.spotify.com/playlist/2jrFMHRaVdaoFzhaMvw6gH"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <img src={imgPlaylist} alt="Spotify Playlist" className="w-100 mt-3 mb-1" />
+                    </a>
+                    <a
+                      className="d-block"
+                      href="https://open.spotify.com/episode/0WfOyXU9gYwwfn8WKnQJtf?si=-t88LwaaRkSKJgjV9sn6yw"
+                      target="_blank" rel="noopener noreferrer"
+                    >
+                      <img src={imgPodcast} alt="Spotify Podcast" className="w-100 mt-3 mb-1" />
                     </a>
                   </Col>
-                  <Col xs={6} className="mt-3 text-right">
+                  <Col xs={7} sm={9} className="mt-3 text-right">
                     <span>Compartir</span>
                     <WhatsappShareButton url={window.location.href} title={msgSocialShare} >
                         <img src={whatsAppImg} alt="WhatsApp Img" className="share-icon" />
